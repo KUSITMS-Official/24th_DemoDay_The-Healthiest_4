@@ -1,0 +1,58 @@
+div{
+    text-align: center;
+}
+table{
+    margin: auto;
+    text-align: center;
+}
+body{
+    background-image: url('../img/bluengreen.png');
+    background-color: #61A0E8;
+}
+button{
+    border:0;
+    outline: 0;
+}
+#tbl{
+    margin-top: 2em;
+    background-color: white; 
+    width: 48.125em;
+    height: 42.5em;
+    border-radius: 1.875em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+h4{ 
+    font-weight:bold; 
+    font-size: 3em;
+    box-shadow: inset 0 -0.5em 0 #6bd7ff; 
+    width: 4em;
+    text-align: center;
+    margin-left: auto; 
+    margin-right: auto;
+}
+td{
+    padding-left: 15%; 
+    padding-right: 15%;
+    text-align: left;
+}
+span{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.input_text{
+    width: 35.625em; 
+    height: 3.75em;
+    border-radius: 0.625em; 
+    border-color: #DBDBDB; 
+    border-top-width: 0.05em; 
+    border-left-width: 0.05em;
+}
+.link_btn{
+    border-radius: 0.625em;
+    width: 35.625em; 
+    height: 3.75em;
+    font-weight: bold;
+    border-width: medium; 
+    border-style: solid; 
+    border-color: #0E52A0;
+}

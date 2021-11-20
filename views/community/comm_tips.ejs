@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>커뮤니티: 건강 고민 & 꿀팁 공유</title>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/nav_css.css">
+  <link rel="stylesheet" href="../css/community.css">
+  <link rel="stylesheet" href="../css/nav_css_after_login.css">
+
+
+  <style>
+    .selected:hover {
+      background-color: #F6F6F6;
+    }
+  </style>
+</head>
+
+
+<body>
+
+    <!-- nav -->
+    <%- include('nav.html') %>
+
+
+  <!--body-->
+  <br>
+
+  <div class="row" style="width: 100%;">
+    <table>
+      <td style="width:20px;"></td>
+      <td><a href="/community"><img src="../img/backspace.png"></a></td>
+      <td>
+        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;"> 건강 고민 & 꿀팁 공유 </div>
+      </td>
+    </table>
+    <div class="col"> </div>
+    <span class="bar">
+      <input class="searchbar" type="text" placeholder="검색어를 입력하세요" title="Search">
+      <a href="#"> <i style="color:#61A0E8; position: relative; z-index: -1;"
+          class="fas fa-search fa-lg search_icon"></i></a>
+    </span>
+  </div>
+  <img style="width: 100%" src="../img/banner.png">
+
+
+  <div class="row" style="font-size:20px; color:#999999; margin:1.5%; text-align: center;">
+    <div class="col"></div>
+    <div class="col1" style="margin:auto; margin-left:410px;"><span style="color:#61A0E8; box-shadow: 0px 4px 0px #61A0E8;">&nbsp&nbsp 건강 고민 나누기 &nbsp&nbsp</span></div>
+    <div class="col1">&nbsp&nbsp 꿀팁 공유 &nbsp&nbsp</div>
+    <div class="col1">&nbsp&nbsp 우리 동네 정보 &nbsp&nbsp</div>
+    <div class="col1  " style="margin-right:410px;">&nbsp&nbsp 증상별 &nbsp&nbsp</div>
+    <div class="col"></div>
+  </div>
+  <!--글 목록-->
+  <a href="com_detail.html" style="color:#191919">
+    <table class="selected" style="width:100%; border:solid #C4C4C4 1px; font-size:18px;">
+      <tr>
+        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">매일 아침 같이 런닝하실 분 모집합니다!</td>
+        <td style="text-align:right; padding-right:10%" rowspan="2">
+          <div><img src="../img/icon-thumb.png"> 10</div>
+          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 72%; padding-left:2%;">매일 늦게 자고 아침 10~11시에 일어나는 올빼미형 인간입니다. 
+          아침에 일찍 일어나서 미라클 모닝하면서 같이<span style="font-size:small; color:gray">...더 보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+  <a href="com_detail.html" style="color:#191919">
+    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
+      <tr>
+        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
+        <td style="text-align:right; padding-right:10%" rowspan="2">
+          <div><img src="../img/icon-thumb.png"> 10</div>
+          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
+            보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+  <a href="com_detail.html" style="color:#191919">
+    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
+      <tr>
+        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
+        <td style="text-align:right; padding-right:10%" rowspan="2">
+          <div><img src="../img/icon-thumb.png"> 10</div>
+          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
+            보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+  <a href="com_detail.html" style="color:#191919">
+    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
+      <tr>
+        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
+        <td style="text-align:right; padding-right:10%" rowspan="2">
+          <div><img src="../img/icon-thumb.png"> 10</div>
+          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
+            보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+  <a href="com_detail.html" style="color:#191919">
+    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
+      <tr>
+        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
+        <td style="text-align:right; padding-right:10%" rowspan="2">
+          <div><img src="../img/icon-thumb.png"> 10</div>
+          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
+            보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+
+  <div style="text-align: center; margin-top:15px;">
+<a style="color:#0E52A0; font-size:24px; margin-right: 80px;"> &lt 이전</a>
+<span style="font-size: 32px"> <b>1</b> &nbsp 2 &nbsp  3 &nbsp  4 &nbsp  5</span>
+<a style="color:#0E52A0; font-size:24px; margin-left: 80px"> &gt 다음</a>
+
+  </div> 
+<button onClick="location.href='com_write.html'" type="button" class="write_btn">글 작성</button>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

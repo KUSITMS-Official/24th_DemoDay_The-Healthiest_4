@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Healthiest</title>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/community.css">
+
+</head>
+
+
+<body>
+
+  <!-- nav -->
+  <%- include('nav.html') %>
+
+  <!--body-->
+  <br>
+
+  <div class="row" style="width: 100%;">
+    <table>
+      <td style="width:20px;"></td>
+      <td><a href="/community"><img src="../img/backspace.png"></a></td>
+      <td>
+        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;"> 자유게시판 </div>
+      </td>
+    </table>
+    <div class="col"> </div>
+    <span class="bar">
+      <input class="searchbar" type="text" placeholder="검색어를 입력하세요" title="Search">
+      <a href="#"> <i style="color:#61A0E8; position: relative; z-index: -1;"
+          class="fas fa-search fa-lg search_icon"></i></a>
+    </span>
+  </div>
+  <img style="width: 100%" src="../img/banner.png">
+
+
+  <!-- 글 예시 -->
+  <a href="/comm_detail">
+    <table class="selected">
+      <tr>
+        <td class="title">ENFP 모두 모여</td>
+        <td class="icons" rowspan="2">
+          <div class="thumb_icon"><img src="../img/icon-thumb.png"> 10</div>
+          <div class="comment_icon"><img src="../img/icon-comment.png"> 25
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="summary">운동에 입문한 지 얼마 안된 헬린이 입니다.
+          MBTI를 맹신하는 편이라 혹시 ENFP들 헬스 좋아하시나요?
+          제 주위 ENFP들은 안 좋아해서.. 헬시스트에서 찾고 싶어요ㅠㅠ <span class="extra">...더 보기</span></td>
+      </tr>
+    </table>
+  </a>
+
+  <!-- post 읽어오기 -->
+  <% for (var i = 0; i < 4; i++){ %>
+    <a href="/comm_detail">
+      <table class="selected">
+        <tr>
+          <td class="title">글 제목</td>
+          <td class="icons" rowspan="2">
+            <div class="thumb_icon"><img src="../img/icon-thumb.png"> 10</div>
+            <div class="comment_icon"><img src="../img/icon-comment.png"> 25
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="summary">글 내용 (100자 내외만 보여짐)<span class="extra">...더 보기</span></td>
+        </tr>
+      </table>
+    </a>    
+    <% } %>
+
+
+
+  <div style="text-align: center; margin-top:15px;">
+    <a class="pre"> &lt 이전</a>
+    <span class="numbers"> <b>1</b> &nbsp 2 &nbsp 3 &nbsp 4 &nbsp 5</span>
+    <a class="next"> &gt 다음</a>
+
+  </div>
+
+  
+  <button onClick="location.href='com_write.html'" type="button" class="write_btn">글 작성</button>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

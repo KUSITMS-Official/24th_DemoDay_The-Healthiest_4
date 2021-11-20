@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Healthiest</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/community.css">
+
+</head>
+
+<body>
+    <img src="../img/bg-blue.png" style="position: absolute; left:0px; top:0px;">
+    <!-- nav -->
+    <%- include('nav.html') %>
+
+
+    <p class="comm_title text-center">
+        커뮤니티
+    </p>
+    <table class="comm_list text-center" height="200px">
+        <tr>
+            <td style="padding-top:1%">
+                <p style="font-size: 30px; font-weight: bold;">여러분의 건강, 운동 관련 고민을 함께 나눠보세요!</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="font-size: 24px;"> 체형별 고민상담, 런닝 • 등산 • 헬스 크루 모집, 식단 공유, <br /> 공구 파티원 모집 등 카테고리 별로 자유롭게 소통해보세요
+                </p>
+            </td>
+        </tr>
+    </table>
+
+
+    <div style="margin-top:7px;">
+        <span>
+            <a href="/comm_free"><img src="../img/board_free.png" style="margin-right:80px"></a>
+            <a href="/comm_body"><img src="../img/board_body.png" style="margin-right:80px"></a>
+            <a href="/comm_crew"><img src="../img/board_crew.png"></a>
+        </span>
+    </div>
+
+    <div>
+        <span>
+            <a href="/comm_tips"><img src="../img/board_tips.png" style="margin-right:80px"></a>
+            <a href="/comm_meal"><img src="../img/board_meal.png" style="margin-right:80px"></a>
+            <a href="/comm_go"><img src="../img/board_go.png"></a>
+        </span>
+    </div>
+    <img src="../img/bg-green.png" class="bg_green">
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

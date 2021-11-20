@@ -1,0 +1,60 @@
+div{
+    text-align: center;
+}
+table{
+    margin: auto;
+    text-align: center;
+}
+
+/* health_before_login */
+#top_back_img{
+    background-image: url(../img/bg-blue.png); 
+    background-size: 40% 80%; 
+    background-repeat: no-repeat;
+}
+#bottom_back_img{
+    background-image: url(../img/health_green.png); 
+    background-size: 100% 90%; 
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+#main_text{
+    text-align: center; 
+    font-weight: bold; 
+    box-shadow: inset 0 -0.4em 0 #6bd7ff; 
+    width: 20%; 
+    margin-left: auto; 
+    margin-right: auto;
+    font-size: 3.5em;
+}
+#info_table{
+    background-color: #F6F6F6; 
+    margin-left: 0; 
+    width: 100%; 
+    height: 18.75em;
+    position: relative; 
+    z-index: -1;
+}
+.icon{
+    width: 16.875em;
+    height: 16.875em;
+} 
+#ask_btn{
+    border-radius: 2em;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 2%;
+    padding-right: 2%;    
+    background-color: #0E53A0; 
+    color: white; 
+    font-weight: bold;
+    font-size: 1.2em;
+    border-style: none;
+}
+h5{
+    font-size: 2em;
+    font-weight: bold;
+}
+#tbl_text{
+    font-size: 1.5em;
+}

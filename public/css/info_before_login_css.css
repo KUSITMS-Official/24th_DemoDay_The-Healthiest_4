@@ -1,0 +1,61 @@
+div{
+    text-align: center;
+}
+h4, h5{
+    text-align: center;
+    font-weight: bolder;
+    line-height: 1.5em;
+}
+
+/* info_before_login */
+#head_text{
+    height: 9.375rem;
+    padding-top: 3.2rem;
+    font-size: 2.5em;
+    font-weight: 1000;
+}
+#table1{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    width: 80%;
+    height:25rem;
+    border-bottom-style: solid;
+    border-bottom-color: #999999;
+}
+p{
+    font-size: 1.5rem;
+    font-weight:normal;
+}
+.blue_back{
+    color: white;
+    background-color: #61A0E8; 
+}
+.icon{
+    width: 10.5em;
+    height: 10.5em;
+}
+.icon2{
+    width: 25em;
+    height: auto;
+}
+#table2{
+    border-style: dashed; 
+    border-color: #61A0E8; 
+    border-width: 0.1em; 
+    margin: auto;
+}
+.icon3{
+    width: 7em;
+    height: auto;
+}
+#ci{
+    font-size: 2em;
+    box-shadow: inset 0 -0.5em 0 #6bd7ff; 
+    width: 15em;
+    margin-left: auto; 
+    margin-right: auto;
+}
+#bottom{
+    background-color: #F6F6F6;
+}

@@ -1,0 +1,36 @@
+div{
+    text-align: center;
+}
+
+#top_logo{
+    width: 9.125em;
+}
+.input_text{
+    width:48.125em;
+    height: 3.75em;
+    border-radius: 0.625em;
+    background-color: #DBDBDB;
+    border-style: none;
+}
+.input_text_title{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.choice_btn{
+    width: 8.125em;
+    height: 2.5em;
+    border-radius: 1.875em;
+    border-width: thin;
+}
+#finish_btn{
+    border-radius: 2em;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 2%;
+    padding-right: 2%;    
+    background-color: #0E53A0; 
+    color: white; 
+    font-weight: bold;
+    font-size: 1.2em;
+    border-style: none;
+}
