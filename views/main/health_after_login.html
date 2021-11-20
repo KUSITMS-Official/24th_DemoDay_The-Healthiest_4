@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/nav_css_after_login.css">
+    <link rel="stylesheet" href="../css/health_before_login_css.css">
+    <title>HealthMain</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a id="logo" href="/main">
+                <img src="../img/nav-logo.png" class="navbar-brand">
+            </a>
+            <form class="d-flex">
+                <a href="#" class="btn" id="btn1" tabindex="-1" role="button" aria-disabled="true">마이페이지</a> &nbsp;&nbsp;
+                <a href="/" class="btn" id="btn2" tabindex="-1" role="button" aria-disabled="true">로그아웃</a>
+                <div class="nav-item dropdown">
+                    <button class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 30 30" role="img" focusable="false">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/info2">소개 페이지</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/health2">건강 관리</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">커뮤니티</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">챌린지</a>
+                    </div> 
+                </div>
+            </form>
+        </nav>
+    </header>
+
+    <div id="top_back_img">
+        <br><br>
+        <h2 id="main_text">건강 관리</h2><br><br>
+
+        <table id="info_table">
+            <tr>
+                <td>
+                    <br><br>
+                    <h5>건강 관리에 대한 정보를 알려드릴게요!</h5>
+                    <br>
+                    <div id="tbl_text">
+                        홈트를 시작하고는 싶은데, 어떤 종류가 있는지 모르겠거나,<br/>
+                        나한테 필요한 비타민이나 보충제는 어떤 것일지 고민될 때는 없으셨나요?<br>
+                        건강 관리를 보다 쉽게 도와줄 여러 서비스들을 소개합니다.<br><br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="bottom_back_img">
+    <table style="width: 90%; height: 30em;">
+        <tr>
+            <td>
+                <span style="font-weight: bold;">01</span> <br>
+                <a href="http://inbody.kr/kr/" tabindex="-1" role="button" aria-disabled="true">
+                    <img class="icon" src="../img/inbody.png">
+                </a><br>
+                inbody 측정 후, 앱으로<br> 나의 건강 변화 정도를<br> 확인할 수 있다는 점,<br> 아셨나요?
+            </td>
+            <td>
+                <span style="font-weight: bold;">02</span> <br>
+                <a href="https://pilly.kr/land/index?utm_source=google&utm_medium=cpc&utm_term=%7B%7Bad.name%7D%7D&utm_content=%7B%7Badset.name%7D%7D&utm_campaign=%7B%7Bcampaign.name%7D%7D&gclid=CjwKCAjwiY6MBhBqEiwARFSCPsSOz0n1dbrvrZvWzNg7jV5p52MOuaIA79iL1nAz-FeTrh3BUEiBFxoCrrkQAvD_BwE" tabindex="-1" role="button" aria-disabled="true">
+                    <img class="icon" src="../img/pilly.png">
+                </a><br>
+                건강 설문 조사부터<br> 영양제 정기구독,<br> 섭취관리까지<br> 해주는 서비스도 있어요.
+            </td>
+            <td>
+                <span style="font-weight: bold;">03</span> <br>
+                <a href="/hometraining_main2" tabindex="-1" role="button" aria-disabled="true">
+                    <img class="icon" src="../img/youtube.png">
+                </a><br>
+                설명을 읽어보고<br> 해보고 싶은 홈트를<br> 시도해보세요.
+            </td>
+        </tr>
+    </table><br>
+    
+    <div>
+    <br>
+    <div style="font-weight: bold; font-size: 2em;">
+        혹시!<br>
+    </div>
+    <div>
+        더 궁금하신 정보가 있으신가요?<br>
+        의견을 남겨주시면 저희가 알아올게요!<br><br>
+        <a href="#" tabindex="-1" aria-disabled="true">
+            <button id="ask_btn">
+                운영진에게 쪽지보내기
+            </button>
+        </a>        
+    </div>
+    <br><br>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>

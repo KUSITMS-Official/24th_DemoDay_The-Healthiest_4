@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="css/nav_css.css">
+<link rel="stylesheet" href="../css/nav_css_after_login.css">
+
+
+<header>
+    <nav class="navbar">
+        <a id="logo" href="/main">
+            <img src="../img/nav-logo.png" class="navbar-brand">
+        </a>
+        <form class="d-flex">
+            <a href="#" class="btn" id="btn1" tabindex="-1" role="button" aria-disabled="true">마이페이지</a> &nbsp;&nbsp;
+            <a href="/" class="btn" id="btn2" tabindex="-1" role="button" aria-disabled="true">로그아웃</a>
+            <div class="nav-item dropdown">
+                <button class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 30 30" role="img" focusable="false">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/info2">소개 페이지</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/health2">건강 관리</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/community">커뮤니티</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/challenge/introduce">챌린지</a>
+                </div> 
+            </div>
+        </form>
+    </nav>
+</header>

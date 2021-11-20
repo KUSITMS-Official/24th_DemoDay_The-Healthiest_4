@@ -1,0 +1,50 @@
+div {
+  text-align: center;
+}
+
+/*navbar_css*/
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
+  background-color: white;
+}
+.navbar {
+  height: 4.375em;
+  flex-wrap: nowrap;
+}
+body {
+  padding-top: 4.375em;
+}
+#logo {
+  justify-content: start;
+}
+.navbar-brand {
+  height: 3.125em;
+  display: block;
+  max-width: 100%;
+}
+#btn1 {
+  margin-top: 0.5em;
+  border-radius: 1.875em;
+  width: 7em;
+  height: 2.5em;
+  font-size: 1em;
+  background-color: #bfef00;
+}
+#btn2 {
+  margin-top: 0.5em;
+  border-radius: 1.875em;
+  width: 6.5em;
+  height: 2.5em;
+  font-size: 1em;
+  background-color: #6bd7ff;
+}
+.nav-item {
+  position: relative;
+}
+.nav-link {
+  background-color: white;
+  border: 0;
+}
