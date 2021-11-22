@@ -1,0 +1,151 @@
+html{  
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    padding-top: 2.5em;
+    width: 100%;
+    height: 100%;
+}
+
+
+.outter{
+    padding: 4.375em 0.625em;
+    background-image: url("../img/bluengreen.png");
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+   
+    background-size:cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my{
+    border: white  0.06em solid;
+    background-color: white;
+    color: black;
+    border-radius: 0.635em;
+    width: 19.063em;
+    height: 16.875em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4.5em; 
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.mynameoutter{
+    display: flex;
+    margin-top:2.5em;
+}
+
+.myname{
+    background-color: #EDEDED ;
+    width: 11.875em;
+    height: 2.438em ;
+    border: EDEDED  0.06em solid;
+    border-radius: 0.635em;
+    text-align: center ;
+    margin-right: 0.813em;
+}
+
+
+#dear{
+    font-size: 1.500em;
+    font-weight: 600;
+}
+
+.msg {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3.438em;
+    color:black;
+    justify-content: center;
+}
+
+.msgroom{
+    border: 1px soild #61A0E8;
+    background-color: #61A0E8;
+    border-radius: 0.625em;
+    width: 4.942em;
+    height: 2.438em;
+    margin-right: 0.813em;
+    color: white;
+    font-size: 0.938em;
+    text-align: center;
+    padding-top: 0.438em;
+    font-weight: 600;
+    margin-top: 0.438em;
+}
+.msgcnt{
+    font-size: 2.188em;
+    font-weight: 600;
+}
+
+.settingspace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.625em;
+    
+}
+
+
+table{
+    background-color: #EDEDED;
+    width: 43.5em;
+    height: 21em;
+    font-size: 20px;
+    font-weight: 500;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.titlerepresent{
+    background-color: #83BDFF;
+    color: white;
+    border-radius: 0.625em;
+}
+thead{
+    background-color: #83BDFF;
+    color: white;
+   
+}
+tr{
+    border-top: 1px solid #83BDFF;
+
+}
+
+
+th, td{
+    padding-left: 40px;
+    text-align: start;
+    font-weight: 700;
+    width: 20em;
+    height: 3.3em;
+    border: black 1px solid;
+}
+
+.btntd{
+    display: flex;
+    justify-content: end;
+    background-color: #EDEDED;
+}
+
+.btnposition{
+    border: #0E53A0 1px solid;
+    background-color: #0E53A0;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+    height: 2em;
+    width: 5.5em;
+    margin-top: 0.7em;
+    font-size: 18px;
+}
+

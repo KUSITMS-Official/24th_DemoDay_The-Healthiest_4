@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.set('view engine', 'ejs');
 
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,7 +29,7 @@ app.get('/login', function(req, res){
     res.sendFile(__dirname+'/views/main/login.html');
 });
 
-app.get('/join', function(req, res){
+app.get('/join', function(req,  res){
     res.sendFile(__dirname+'/views/main/join.html');
 });
 
@@ -108,4 +109,49 @@ app.get("/challenge/payment", function (req, res) {
 
 app.get("/challenge/stamp", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-stamp.html");
+});
+
+app.get('/mypage', function (req, res) {
+    res.render('mypage/mypage.ejs');
+});
+
+app.get('/mypage/ask', function (req, res) {
+    res.render('mypage/askTheHealthiest.ejs');
+});
+
+app.get('/mypage/bodytype', function (req, res) {
+    res.render('mypage/bodytype.ejs');
+});
+
+app.get('/mypage/challgengeExsisted', function (req, res) {
+    res.render('mypage/challengeExsisted.ejs');
+});
+
+app.get('/mypage/challengeNone', function (req, res) {
+    res.render('mypage/challengeNone.ejs');
+});
+
+app.get('/mypage/mail', function (req, res) {
+    res.render('mypage/mail.ejs');
+});
+
+app.get('/mypage/mailbox', function (req, res) {
+    res.render('mypage/mailbox.ejs');
+});
+
+app.get('/mypage/mywriting', function (req, res) {
+    res.render('mypage/mywriting.ejs');
+});
+
+app.get('/mypage/revisingwriting', function (req, res) {
+    res.render('mypage/revisingwriting.ejs');
+});
+app.get('/mypage/settingAccount', function (req, res) {
+    res.render('mypage/setting.ejs');
+});
+app.get('/mypage/settingCommunity', function (req, res) {
+    res.render('mypage/setting2.ejs');
+});
+app.get('/mypage/symptom', function (req, res) {
+    res.render('mypage/symptom.ejs');
 });
