@@ -70,29 +70,33 @@ app.get('/community', function (req, res) {
     res.render('community/comm_list.ejs');
 });
 
-app.get('/comm_free', function (req, res) {
+app.get('/community/free', function (req, res) {
     res.render('community/comm_free.ejs');
 });
 
-app.get('/comm_body', function (req, res) {
+app.get('/community/bodytype', function (req, res) {
     res.render('community/comm_body.ejs');
 });
 
-app.get('/comm_crew', function (req, res) {
+app.get('/community/crew', function (req, res) {
     res.render('community/comm_crew.ejs');
 });
 
-app.get('/comm_tips', function (req, res) {
+app.get('/community/tips', function (req, res) {
     res.render('community/comm_tips.ejs');
 });
 
-app.get('/comm_meal', function (req, res) {
+app.get('/community/meal', function (req, res) {
     res.render('community/comm_meal.ejs');
 });
 
-app.get('/comm_go', function (req, res) {
+app.get('/community/grouporder', function (req, res) {
     res.render('community/comm_go.ejs');
 });
+
+app.get('/community/write', function(req, res){
+    res.render('community/comm_write.ejs');
+})
 
 app.get("/challenge/introduce", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-introduce.html");
