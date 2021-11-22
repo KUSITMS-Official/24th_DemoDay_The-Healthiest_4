@@ -1,0 +1,170 @@
+html{  
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    padding-top: 2.5em;
+    width: 100%;
+    height: 100%;
+}
+
+
+.outter{
+    padding: 4.375em 0.625em;
+    background-image: url("../img/bluengreen.png");
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+   
+    background-size:cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my{
+    border: white  0.06em solid;
+    background-color: white;
+    color: black;
+    border-radius: 0.635em;
+    width: 19.063em;
+    height: 16.875em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4.313em; 
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.mynameoutter{
+    display: flex;
+    margin-top:2.5em;
+}
+
+.myname{
+    background-color: #EDEDED ;
+    width: 11.875em;
+    height: 2.438em ;
+    border: EDEDED  0.06em solid;
+    border-radius: 0.635em;
+    text-align: center ;
+    margin-right: 0.813em;
+}
+
+
+#dear{
+    font-size: 1.500em;
+    font-weight: 600;
+}
+
+.msg {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3.438em;
+    color:black;
+    justify-content: center;
+}
+
+.msgroom{
+    border: 1px soild #61A0E8;
+    background-color: #61A0E8;
+    border-radius: 0.625em;
+    width: 4.942em;
+    height: 2.438em;
+    margin-right: 0.8em;
+    color: white;
+    font-size: 0.938em;
+    text-align: center;
+    padding-top: 0.438em;
+    font-weight: 600;
+    margin-top: 0.438em;
+}
+.msgcnt{
+    font-size: 2.188em;
+    font-weight: 600;
+}
+.settingspace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#title{
+    font-weight: 700;
+    font-size: 1.875em;
+   
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0px;
+    margin-bottom: 0.7em;
+  
+}
+
+
+.contentoutter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+   
+}
+
+
+.settingspace{
+    background-color:#EDEDED;
+    width: 48.125em;
+    height: 26.250em;
+    display:flex;
+    flex-direction: column;
+}
+
+
+.choice_btn{
+    width: 8.125em;
+    height: 2.5em;
+    border-radius: 1.875em;
+    border-width: thin;
+}
+
+.buttonoutter{
+    margin-top: 1.25em;
+}
+.buttonoutter2{
+    margin-top: 3.125em;
+}
+
+
+
+.revisebttn{
+    background-color: #0E53A0;
+    color: white;
+    border: 1px solid #0E53A0;
+    padding: 0.813em 1.563em;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 1.7em;
+}
+
+
+.modal-h {
+    text-align: center;
+    font-weight: bold;
+    font-size: 280%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .modal-b {
+    background-color: #0e53a0;
+    border:none;
+    width: 25%;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
+    border-radius: 30px;
+    font-weight: bold;
+    color: white;
+    font-size: 160%;
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.25));
+  }

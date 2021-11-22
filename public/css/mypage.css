@@ -1,0 +1,119 @@
+html{  
+    width: 100%;
+    height: 100%;
+}
+body{
+    padding-top: 2.5em;
+    width: 100%;
+    height: 100%;
+}
+
+.outter{
+    padding: 4.375em 0.635em;
+    background-image: url("../img/bluengreen.png");
+    background-attachment: fixed;
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my{
+    border: white  0.06em solid;
+    background-color: white;
+    color: black;
+    border-radius: 0.635em;
+    width: 19.063em;
+    height: 16.875em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2.7em; 
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.mynameoutter{
+    display: flex;
+    margin-top:2.5em;
+}
+
+.myname{
+    background-color: #EDEDED ;
+    width: 11.875em;
+    height: 2.438em ;
+    border: EDEDED  0.06em solid;
+    border-radius: 0.635em;
+    text-align: center ;
+    margin-right: 0.813em;
+}
+
+
+#dear{
+    font-size: 1.500em;
+    font-weight: 600;
+}
+
+.msg {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3.438em;
+    color:black;
+    justify-content: center;
+}
+
+.msgroom{
+    border: 1px soild #61A0E8;
+    background-color: #61A0E8;
+    border-radius: 0.625em;
+    width: 4.942em;
+    height: 2.438em;
+    margin-right: 0.823em;
+    color: white;
+    font-size: 0.938em;
+    text-align: center;
+    padding-top: 0.438em;
+    font-weight: 600;
+    margin-top: 0.438em;
+}
+.msgcnt{
+    font-size: 2.188em;
+    font-weight: 600;
+}
+
+.settings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.boxes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25em; 
+    flex-direction: row;
+
+}
+
+.smallbox{
+    border: #BCDCFF 16px solid;
+    background-color: white;
+    border-radius: 0.625em;
+    padding: 3em;
+    padding-top: 4.5em;
+    width: 16.875em;
+    height: 16.875em;
+    margin-left: 1.875em;
+    justify-content: center;
+    text-align: center;
+}
+.smallbox-text{
+    font-weight: 600;
+    font-size: 2.250em;
+    color: #204066;
+    
+}

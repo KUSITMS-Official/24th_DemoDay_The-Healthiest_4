@@ -25,13 +25,16 @@ body{
     display: block;
     max-width: 100%;
 }
-.btn{
+.bttn{
     margin-top: 0.5em;
     border-radius: 1.875em;
     width: 6.5em;
     height: 2.5em;
     font-size: 1em;
     background-color: #6BD7FF; 
+    color: black;
+    text-align: center;
+    padding: 7px;
 }
 .nav-item{
     position: relative;
