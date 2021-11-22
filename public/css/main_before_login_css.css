@@ -3,12 +3,6 @@
     background-image: url('../img/main-bluegreen.png'); 
     background-size: 100% 100%; 
     background-color: #61A0E8;
-<<<<<<< HEAD
-}
-.main_icon{
-    width: 8.1em;
-    height: 8.2em;
-=======
     height: 33.063em;
 }
 #main_text{
@@ -24,20 +18,12 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.25rem;
->>>>>>> a6b7c6a42a1fe99bcaf164089e89025e5fe55d35
 }
 #main_table{
     margin: auto;
     width: 80%;
-<<<<<<< HEAD
-    font-weight:normal;
-}
-#main_img{
-    text-align: center; width: 70%;
-=======
 }
 #main_img{ 
->>>>>>> a6b7c6a42a1fe99bcaf164089e89025e5fe55d35
     display: block;
     margin: auto;
     max-width: 100%;
