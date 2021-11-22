@@ -1,0 +1,235 @@
+html{  
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    padding-top: 2.5em;
+    width: 100%;
+    height: 100%;
+}
+
+
+.outter{
+    padding: 4.375em 0.625em;
+    padding-right: 0px;
+    background-image: url("../img/bluengreen.png");
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    background-size:cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.my{
+    background-color: white;
+    color: white;
+    border-radius: 0.625em;
+    padding: 1.875em;
+    width: 18.750em;
+    height: 31.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em; 
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+    
+}
+
+.settingspace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 70px;
+}
+
+
+
+.write {
+    margin-top: 5.188em;
+    width: 31.25em;
+    height: 16.875em;
+    padding: 2.5em;
+    font-size: 30px;
+    font-weight: 400;
+    
+}
+
+table{
+    width: 37.5em;
+    height: 20em;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+  
+}
+
+td{
+    padding: 0.7em;
+    font-weight: 500;
+    padding-left: 2.3em;
+    border: none;
+}
+
+.icontd{
+    padding:0px;
+    width:1.68em;
+    height: 1.688em;
+}
+.titletable{
+    font-weight: 700;
+   
+}
+
+.mailtable{
+    background-color: #F6F6F6;
+    text-align: start;
+    padding-left:1.875em;
+}
+.writingmail{
+    background-color: #61A0E8;
+    width: 12.5em;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #61A0E8;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom 3.125em;
+    color: white;
+    
+}
+.sboxtable{
+    width: 10.5em;
+    height: 10.5em;
+    margin-top: 2.5em;
+}
+
+
+.sboxtd{
+    padding: 1px;
+}
+
+.snumber{
+    font-size:35px;
+    font-weight: 700;
+    color: #61A0E8;
+}
+
+.boxoutter {
+    width: 54em;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    margin-bottom : 1.875em;
+}
+
+.title{
+    width: 6em;
+    height: 2.5em;
+    color: white;
+    background-color: #83BDFF;
+    border: 1px solid #83BDFF;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 0.5em;
+
+}
+
+.receiverinput{
+    border:none;
+    background-color: #EDEDED;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 46.250em;
+    padding-left: 0.938em;
+}
+
+.titleinput{
+    border:none;
+    background-color: #EDEDED;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 46.25em;
+    padding-left: 0.938em;
+}
+
+.contentsoutter{
+    background-color: #EDEDED;
+    width: 54em;
+    height: 30em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  
+}
+
+.contentstitle{
+    background-color: #83BDFF;
+    height: 3em;
+    color: white;
+    text-align: start;
+    padding-left: 15px;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 43.5em;
+    display: flex;  
+    flex-direction: row;
+    padding-top: 15px;
+}
+
+.submitbttn{
+    background-color: #0E53A0;
+    color: white;
+    border: 1px solid #0E53A0;
+    padding: 0.5em 1.68em;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0.625em;
+}
+
+.filebox{
+    margin-left: 29.3em;
+}
+.filebox label {
+    color: black;
+    font-size: 18px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: .25em;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    width: 5.6em;
+    height: 1.8em;
+    font-weight: 700;
+  }
+  
+  
+  .filebox label:active {
+    background-color: #EDEDED;
+  }
+  
+  .filebox input[type="file"] {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .contnetsinput{
+      height: 25em;
+      background-color: #EDEDED;
+      border: none;
+      width: 54em;
+
+  }
