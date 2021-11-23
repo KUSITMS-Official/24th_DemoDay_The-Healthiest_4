@@ -127,7 +127,7 @@ app.get('/mypage/bodytype', function (req, res) {
     res.render('mypage/bodytype.ejs');
 });
 
-app.get('/mypage/challgengeExsisted', function (req, res) {
+app.get('/mypage/challengeExsisted', function (req, res) {
     res.render('mypage/challengeExsisted.ejs');
 });
 
