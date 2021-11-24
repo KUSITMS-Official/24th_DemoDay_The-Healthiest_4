@@ -8,14 +8,17 @@ app.set('view engine', 'ejs');
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-//const MongoClient = require('mongodb').MongoClient;
-//MongoClient.connect('mongodb+srv://admin:health123@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
-    
-//})
+const MongoClient = require('mongodb').MongoClient;
 
-app.listen(8080, function(){
+MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
+    if (err) return console.log(err)
+
+    app.listen(8080, function(){
         console.log('listening on 8080');
     });
+ 
+})
+
 
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/views/main/main_before_login.html');
