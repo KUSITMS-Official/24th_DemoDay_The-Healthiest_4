@@ -68,12 +68,12 @@
               
                 <div class="boxoutter">
                     <div class="title">받는 사람</div>
-                    <input type="email" class="receiverinput" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="receiverinput" id="exampleFormControlInput1" placeholder="name@example.com"><%= Mail.reciever %>
                 </div>
 
                 <div class="boxoutter">
                     <div class="title">제목 입력란</div>
-                    <input type="text" class="titleinput">
+                    <input type="text" class="titleinput"><%= Mail.title %>
                 </div>
                 
                 <div class="contentsoutter">
@@ -83,7 +83,7 @@
                             <input type="file" id="ex_file">
                           </div>
                     </div>
-                    <textarea  class="contnetsinput"></textarea>
+                    <textarea  class="contnetsinput"><%= Mail.content %></textarea>
                     
                 </div>
                 <button class="submitbttn">보내기</button>

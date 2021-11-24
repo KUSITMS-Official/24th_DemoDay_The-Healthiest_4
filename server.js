@@ -5,12 +5,28 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
+/*
+// 로그인 & 세션생성
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+*/
+
+//DB연결
 var db;
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
     if (err) return console.log(err)
 
     db = client.db('The_Healthiest');
+
+    db.collection('Mail').insertOne( { sender: 'John', reciever : 'minseoniee', title: 'test', content: '퇴근시켜줘'} , function(error, result){
+	    console.log('저장완료'); 
+	});
 
     app.listen(8080, function(){
         console.log('listening on 8080');
@@ -120,6 +136,7 @@ app.get("/challenge/stamp", function (req, res) {
 });
 
 app.get('/mypage', function (req, res) {
+    //console.log{req.nickname}
     res.render('mypage/mypage.ejs');
 });
 
