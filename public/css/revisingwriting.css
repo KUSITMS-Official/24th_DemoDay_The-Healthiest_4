@@ -139,7 +139,7 @@ td{
     color: white;
     background-color: #83BDFF;
     border : none;
-    width: 1.875em;
+    width: 30em;
 }
 
 .writingcontent{
@@ -154,6 +154,7 @@ td{
     border : none;
     width: 39em;
     background-color: #DBDBDB;
+    height: 18em;
 
 }
 
