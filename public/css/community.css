@@ -26,7 +26,7 @@ header {
     width: 15%; 
     margin-left: auto; 
     margin-right: auto; 
-    margin-top: 60px;
+    margin-top: 50px;
     position: relative; 
     padding:-50px;
   }
@@ -100,8 +100,8 @@ header {
   }
 
   .submit_btn {
-    margin-right:3%; 
-    margin-top: -3%;
+    margin-left: auto;
+    margin-right: 45%;
     border-radius: 1.875em;
     width: 151px;
     height: 57px;
@@ -183,3 +183,41 @@ header {
   .numbers{
     font-size: 26px;;
   }
+
+
+  /* write */
+
+  .writeTitle {
+    width:80%;
+    border:none;
+    background-color: transparent;
+  }
+
+  .writeContent {
+    width: 98%;
+    height: 95%;
+    border:none;
+    background-color: transparent;
+  }
+
+  .writeTable{
+    border-collapse: collapse;
+     border-radius: 0.5em;
+      overflow: hidden; 
+      width:970px;
+    height:60px;
+  }
+
+    /* subcategory */
+
+    .subrow{
+      font-size: 20px;
+      color:#999999;
+      margin:1.5%;
+      text-align: center;
+    }
+    
+    .subSelected{
+      color:#61A0E8;
+      box-shadow: 0px 4px 0px #61A0E8;
+    }

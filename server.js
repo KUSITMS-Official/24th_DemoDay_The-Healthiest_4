@@ -15,11 +15,34 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
     app.listen(8080, function(){
         console.log('listening on 8080');
     });
-})
+    //글쓰기(add)
+    app.post('/addPost', function (req, res) {
+        db.collection('Counter').findOne({ name:'게시물개수'}, function (err, result) {
+            var totalPost = result.totalPost;   
+            var dataPost = { title: req.body.title, content: req.body.content, post_id: totalPost + 1,
+                created_at: new Date()+(3600000*9), updated_at: new Date()+(3600000*9), category: req.body.category, subcategory: req.body.subcategory,
+                user_id: req.user.user_id
+            }
+            db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
+                //counter collection의 totalPost도 1 증가시키기
+                //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
+                db.collection('Counter').updateOne({ name: '게시물개수' }, { $inc: { totalPost: 1 } }, function (err, result) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
+                })
+            });
+        });;
+    });
+});
+
 
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+/* page rendering */
 
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/views/main/main_before_login.html');
@@ -70,17 +93,25 @@ app.get('/hometraining_main2', function(req, res){
 });
 
 
+/* community */
 
 app.get('/community', function (req, res) {
     res.render('community/comm_list.ejs');
 });
 
 app.get('/community/free', function (req, res) {
-    res.render('community/comm_free.ejs');
+    db.collection('Post').find().toArray(function(error, result){
+        console.log(result)
+        res.render('community/comm_free.ejs', { posts : result})
+      })
 });
 
 app.get('/community/bodytype', function (req, res) {
-    res.render('community/comm_body.ejs');
+    db.collection('Post').find().toArray(function(error, result){
+        console.log(result)
+        //const { page = 1, limit = 10} = req.query;
+        res.render('community/comm_body.ejs', { posts : result})
+      });
 });
 
 app.get('/community/crew', function (req, res) {
@@ -99,9 +130,45 @@ app.get('/community/grouporder', function (req, res) {
     res.render('community/comm_go.ejs');
 });
 
-app.get('/community/write', function(req, res){
-    res.render('community/comm_write.ejs');
+/* community write pages */
+
+app.get('/community/free/write', function(req, res){
+    res.render('community/comm_write_free.ejs');
+});
+
+app.get('/community/grouporder/write', function(req, res){
+    res.render('community/comm_write_go.ejs');
+});
+
+app.get('/community/meal/write', function(req, res){
+    res.render('community/comm_write_meal.ejs');
+});
+
+app.get('/community/crew/write', function(req, res){
+    res.render('community/comm_write_crew.ejs');
+});
+
+
+app.get('/community/bodytype/write', function(req, res){
+    res.render('community/comm_write_body.ejs');
+});
+
+
+app.get('/community/tips/write', function(req, res){
+    res.render('community/comm_write_tips.ejs');
+});
+
+app.get('/community/detail/:id', function (req, res) {
+    db.collection('Post').findOne({ post_id: parseInt(req.params.id) }, function (err, result) {
+            if (err) {
+                console.log(err)
+            }
+            console.log(result);
+            res.render('community/comm_detail.ejs', { data: result });
+    });
 })
+
+/* challenge */
 
 app.get("/challenge/introduce", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-introduce.html");
@@ -212,6 +279,16 @@ passport.serializeUser(function (user, done){
     done(null, user.user_id)
 });
 
-passport.deserializeUser(function(id, done){
-    done(null, {})
+passport.deserializeUser(function (id, done) {
+    db.collection('User').findOne({ user_id : id }, function (err, result) {
+      done(null, result)
+    })
+  }); 
+
+app.get('/callnignickname', function (req, res) {
+    db.collection('User').find().toArray(function(error, result){
+        console.log(result)
+        res.render('mypage/my.ejs', {  User : result })
+      })
 });
+
