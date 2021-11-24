@@ -5,17 +5,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
-/*
-// 로그인 & 세션생성
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
-
-app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
-app.use(passport.initialize());
-app.use(passport.session()); 
-*/
-
 //DB연결
 var db;
 const MongoClient = require('mongodb').MongoClient;
@@ -24,9 +13,6 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
 
     db = client.db('The_Healthiest');
 
-    db.collection('Mail').insertOne( { sender: 'John', reciever : 'minseoniee', title: 'test', content: '퇴근시켜줘'} , function(error, result){
-	    console.log('저장완료'); 
-	});
 
     app.listen(8080, function(){
         console.log('listening on 8080');
@@ -181,6 +167,8 @@ app.get('/mypage/symptom', function (req, res) {
     res.render('mypage/symptom.ejs');
 });
 
+
+
 app.post('/add', function(req, res){
     console.log('전송완료');
     console.log(req.body);
@@ -188,3 +176,97 @@ app.post('/add', function(req, res){
         pwd: req.body.pwd, name: req.body.name, birth: req.body.birthday, 
         nickname: req.body.nickname, email: req.body.email, agree: req.body.check_info});
 })
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+app.post('/login', passport.authenticate('local', {
+    failureRedirect : '/login'
+}), function(req, res){
+    res.redirect('/main');
+});
+
+
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pwd',
+    session: true,
+    passReqToCallback: false,
+}, function(input_id, input_pwd, done){
+    console.log(input_id, input_pwd);
+    db.collection('User').findOne({user_id: input_id}, function(err, result){
+        console.log(result);
+        if (err) return done(err);
+        if (!result) {
+            console.log(5)
+            return done(null, false, {message : '존재하지 않는 아이디입니다.'})
+        }
+        if (input_pwd == result.pwd){
+            user_idplz = result.user_id;
+            return done(null, result)
+        } else {
+            return done(null, false, {message:'비밀번호가 틀렸습니다.'})
+        }
+    })
+}));
+
+//민선 section
+
+//쪽지 보내기
+passport.serializeUser(function (user, done){
+    done(null, user.user_id)
+});
+
+passport.deserializeUser(function(id, done){
+    done(null, {})
+});
+
+app.post('/addmail', function(req, res){
+    console.log('전송완료');
+    db.collection('Mail').insertOne({reciever: req.body.reciever, 
+        title: req.body.title, file: req.body.file, content: req.body.content});
+})
+
+// 마이페이지 닉네임 불러오기
+
+app.use(passport.initialize());                
+app.use(passport.session()); 
+
+passport.serializeUser(function(user, done) {             
+    done(null, user.user_id);
+  });
+  
+  passport.deserializeUser(function(user_id, done) {            
+    User.findById(nickname, function(err, user) {
+      done(err, user);
+    });
+  });
+  
+app.get('/my', 로그인했니, function(req,res){
+    
+    res.render('my.ejs', { user_id: req.user.user_id } )
+})
+
+function 로그인했니(req, res, next) {
+    if (req.user){
+        next()
+    } else {
+        res.send('로그인 부탁드립니다.')
+    }
+
+}
+
+passport.deserializeUser(function (id, done) {
+    db.collection('User').findOne({ user_id : id }, function (err, result) {
+      done(null, result)
+    })
+  });
+
+
+
+

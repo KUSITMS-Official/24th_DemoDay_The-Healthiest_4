@@ -41,54 +41,35 @@
 
         <div class = "outter">
            
-            <div class="my">
-                <div><button class="writingmail">쪽지 쓰기</button></div>
-               <table class="sboxtable">
-                   <tbody>
-                       <tr>
-                            <td class="icontd"><i class="far fa-envelope fa-lg"></i></td>
-                           <td class="sboxtd">전체 쪽지</td>
-                           <td class="sboxtd snumber">0</td>
-                       </tr>
-                       <tr>
-                            <td class="icontd"><i class="fas fa-inbox fa-lg"></i></td>
-                            <td class="sboxtd">받은 쪽지</td>
-                            <td class="sboxtd snumber">0</td>
-                        </tr>
-                        <tr>
-                            <td class="icontd"><i class="far fa-paper-plane fa-lg"></i></td>
-                            <td class="sboxtd">보낸 쪽지</td>
-                            <td class="sboxtd snumber">0</td>
-                        </tr>
-                   </tbody>
-               </table>
-            </div>   
+            <%- include('mymail.ejs') %>  
             
             <div class="settingspace">
               
-                <div class="boxoutter">
-                    <div class="title">받는 사람</div>
-                    <input type="email" class="receiverinput" id="exampleFormControlInput1" placeholder="name@example.com"><%= Mail.reciever %>
-                </div>
+                <form action="/addmail" method="POST">
+                    <fieldset> 
+                        <div class="boxoutter">
+                            <div class="title" >받는 사람</div>
+                            <input type="email" name="reciever" class="receiverinput" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
 
-                <div class="boxoutter">
-                    <div class="title">제목 입력란</div>
-                    <input type="text" class="titleinput"><%= Mail.title %>
-                </div>
+                        <div class="boxoutter">
+                            <div class="title">제목 입력란</div>
+                            <input type="text" name="title" class="titleinput">
+                        </div>
                 
-                <div class="contentsoutter">
-                    <div class="contentstitle">내용을 입력하세요
-                        <div class="filebox">
-                            <label for="ex_file">파일 선택</label>
-                            <input type="file" id="ex_file">
+                        <div class="contentsoutter">
+                            <div class="contentstitle">내용을 입력하세요
+                                <div class="filebox">
+                                <label for="ex_file">파일 선택</label>
+                                <input type="file" id="ex_file" name="file">
                           </div>
-                    </div>
-                    <textarea  class="contnetsinput"><%= Mail.content %></textarea>
+                        </div>
+                        <textarea  class="contnetsinput" name="content"></textarea>
                     
-                </div>
-                <button class="submitbttn">보내기</button>
-
-               
+                        </div>
+                        <button class="submitbttn">보내기</button>
+                    <fieldset> 
+                </form>
             
                 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                 <script script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>   
