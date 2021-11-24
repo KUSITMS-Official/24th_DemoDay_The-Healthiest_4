@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/community.css">
+  <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+
 
 </head>
 
@@ -16,6 +18,15 @@
 <body>
   <!-- nav -->
   <%- include('nav.html') %>
+
+  <!-- function script -->
+  <script>
+    function selectSub(){
+      var x = document.getElementById("subcat");
+      x.style.color = "#61A0E8";
+      x.style.boxShadow = "0px 4px 0px #61A0E8";
+    }
+  </script>
 
   <!--body-->
   <br>
@@ -38,106 +49,48 @@
   <img style="width: 100%" src="../img/banner_blue.png">
 
 
-  <div class="row" style="font-size: 20px; color:#999999; margin:1.5%; text-align: center;">
-    <div class="col">&nbsp&nbsp영양 부족형&nbsp&nbsp</div>
-    <div class="col">&nbsp&nbsp초고도비만형&nbsp&nbsp</div>
-    <div class="col">&nbsp&nbsp근육 부족형&nbsp&nbsp</div>
-    <div class="col">&nbsp&nbsp저체중형&nbsp&nbsp</div>
-    <div class="col"><span  style="color:#61A0E8; box-shadow: 0px 4px 0px #61A0E8;">&nbsp&nbsp하체 비만형&nbsp&nbsp</span></div>
-    <div class="col">&nbsp&nbsp상체 비만형&nbsp&nbsp</div>
-    <div class="col">&nbsp&nbsp마른 비만형&nbsp&nbsp</div>
-    <div class="col">&nbsp&nbsp과체중형&nbsp&nbsp</div>
+
+  <div class="row subrow">
+    <div class="col"><span id="subcat">&nbsp&nbsp영양 부족형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp초고도비만형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp근육 부족형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp저체중형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp하체 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp상체 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp마른 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span id="subcat">&nbsp&nbsp과체중형&nbsp&nbsp</span></div>
   </div>
-  <!--글 목록-->
-  <a href="/community/detail" style="color:#191919">
-    <table class="selected" style="width:100%; border:solid #C4C4C4 1px; font-size:18px;">
-      <tr>
-        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">바지 살때 꿀팁 좀여...</td>
-        <td style="text-align:right; padding-right:10%" rowspan="2">
-          <div><img src="../img/icon-thumb.png"> 10</div>
-          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 72%; padding-left:2%;">아니 제가 하체비만형이라서 허벅지랑 종아리가 되게 두꺼운 편이에요.. 
-          그래서 바지를 살<span style="font-size:small; color:gray">...더
-            보기</span></td>
-      </tr>
-    </table>
-  </a>
 
-  <a href="com_detail.html" style="color:#191919">
-    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
-      <tr>
-        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
-        <td style="text-align:right; padding-right:10%" rowspan="2">
-          <div><img src="../img/icon-thumb.png"> 10</div>
-          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
-            보기</span></td>
-      </tr>
-    </table>
-  </a>
 
-  <a href="com_detail.html" style="color:#191919">
-    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
-      <tr>
-        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
-        <td style="text-align:right; padding-right:10%" rowspan="2">
-          <div><img src="../img/icon-thumb.png"> 10</div>
-          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
-            보기</span></td>
-      </tr>
-    </table>
-  </a>
-
-  <a href="com_detail.html" style="color:#191919">
-    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
-      <tr>
-        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
-        <td style="text-align:right; padding-right:10%" rowspan="2">
-          <div><img src="../img/icon-thumb.png"> 10</div>
-          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
-            보기</span></td>
-      </tr>
-    </table>
-  </a>
-
-  <a href="com_detail.html" style="color:#191919">
-    <table class="selected" style="width:100%; border-bottom:solid #C4C4C4 1px; font-size:18px;">
-      <tr>
-        <td style="padding-left:2%; font-weight: bold; font-size:24px; margin-top:10px;">글 제목</td>
-        <td style="text-align:right; padding-right:10%" rowspan="2">
-          <div><img src="../img/icon-thumb.png"> 10</div>
-          <div style="margin-top:2%;"><img src="../img/icon-comment.png"> 25</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 72%; padding-left:2%;">글 내용 (100자 내외만 보여짐)<span style="font-size:small; color:gray">...더
-            보기</span></td>
-      </tr>
-    </table>
-  </a>
-
+    <!-- post 읽어오기 -->
+    <% for (var i = 0; i < posts.length; i++){ %>
+      <% if(posts[i].category =='bodytype'){ %>
+      <a href="/community/detail/<%= posts[i].post_id %>">
+        <table class="selected">
+          <tr>
+            <td class="title"><%= posts[i].title %></td>
+            <td class="icons" rowspan="2">
+              <div class="thumb_icon"><img src="/img/icon-thumb-blue.png"> 10</div>
+              <div class="comment_icon"><img src="/img/icon-comment-blue.png"> 25
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="summary"> <%= posts[i].content %><span class="extra">...더 보기</span></td>
+          </tr>
+        </table>
+      </a>    
+      <%} %>
+      <% } %>
 
   <div style="text-align: center; margin-top:15px;">
 <a style="color:#0E52A0; font-size:24px; margin-right: 80px;"> &lt 이전</a>
 <span style="font-size: 32px"> <b>1</b> &nbsp 2 &nbsp  3 &nbsp  4 &nbsp  5</span>
-<a style="color:#0E52A0; font-size:24px; margin-left: 80px"> &gt 다음</a>
+<a style="color:#0E52A0; font-size:24px; margin-left: 80px"> 다음 &gt </a>
 
   </div> 
-<button onClick="location.href='/community/write'" type="button" class="write_btn">글 작성</button>
+<button onClick="location.href='/community/bodytype/write'" type="button" class="write_btn">글 작성</button>
+
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

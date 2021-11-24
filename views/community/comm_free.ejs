@@ -41,13 +41,14 @@
 
   <!-- post 읽어오기 -->
   <% for (var i = 0; i < posts.length; i++){ %>
-    <a href="/community/detail/",<%= posts.post_id %>>
+    <% if(posts[i].category =='free'){ %>
+    <a href="/community/detail/<%= posts[i].post_id %>">
       <table class="selected">
         <tr>
           <td class="title"><%= posts[i].title %></td>
           <td class="icons" rowspan="2">
-            <div class="thumb_icon"><img src="../img/icon-thumb.png"> 10</div>
-            <div class="comment_icon"><img src="../img/icon-comment.png"> 25
+            <div class="thumb_icon"><img src="/img/icon-thumb-blue.png"> 10</div>
+            <div class="comment_icon"><img src="/img/icon-comment-blue.png"> 25
             </div>
           </td>
         </tr>
@@ -56,6 +57,7 @@
         </tr>
       </table>
     </a>    
+    <% } %>
     <% } %>
 
 
@@ -68,7 +70,7 @@
   </div>
 
   
-  <button onClick="location.href='/community/write'" type="button" class="write_btn">글 작성</button>
+  <button onClick="location.href='/community/free/write'" type="button" class="write_btn">글 작성</button>
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

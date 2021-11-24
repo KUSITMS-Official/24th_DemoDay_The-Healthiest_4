@@ -8,9 +8,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/nav_css.css">
-  <link rel="stylesheet" href="../css/community.css">
-  <link rel="stylesheet" href="../css/nav_css_after_login.css">
+  <link rel="stylesheet" href="/css/community.css">
 
   <style>
     .selected:hover {
@@ -21,8 +19,8 @@
 
 
 <body>
-    <img src="../img/bg-blue.png" style="position: absolute; left:0px; top:0px; z-index: -1;">
-    <img src="../img/bg-green.png" style="position: absolute; right:0px; bottom:0px; z-index: -1;">
+    <img src="/img/bg-blue.png" style="position: absolute; left:0px; top:0px; z-index: -1;">
+    <img src="/img/bg-green.png" style="position: absolute; right:0px; bottom:0px; z-index: -1;">
 
     <!-- nav -->
     <%- include('nav.html') %>
@@ -32,16 +30,16 @@
   <div class="row mt-3" style="width: 100%;">
     <table>
       <td style="width:20px;"></td>
-      <td><a href="/community"><img src="../img/backspace.png"></a></td>
+      <td><a href="/community/grouporder"><img src="/img/backspace.png"></a></td>
       <td>
-        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;">자유게시판</div>
+        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;">공구 파티원 모집</div>
       </td>
     </table>
 
   </div>
 
 
-<form action="/add" method="POST">
+<form action="/addPost" method="POST">
 <div class="container mt-2" style="margin-left:235px; font-size:20px;">
     <table style="border-collapse: collapse; border-radius: 0.5em; overflow: hidden; width:970px; height:60px;">
         <td style="width:12.5%; background-color:#83BDFF; color: white; font-weight: bold;"> 제목 입력란 </td>
@@ -59,9 +57,9 @@
         </tr>
     </table>
 </div>
-
+<input type="hidden" name="category" value="grouporder">
 <div class="mt-2">   
-  <button onClick="location.href='/community'" type="submit" class="submit_btn">글 작성</button>
+  <button type="submit" class="submit_btn">글 작성</button>
 </div>
 
 </form>
