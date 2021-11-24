@@ -10,30 +10,11 @@ const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
     if (err) return console.log(err)
 
-var db;
-const MongoClient = require('mongodb').MongoClient;
-app.use(express.urlencoded({ extended: true }));
-
-MongoClient.connect('mongodb+srv://admin:health123@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client) {
-    if (err) {
-        return console.log(err)
-    }
     db = client.db('The_Healthiest');
 
-    //ejs 설치
-    app.set('view engine', 'ejs');
-
-    //연결 성공시
-    app.listen(8080, function () {
-        db = client.db('The_Healthiest');
+    app.listen(8080, function(){
         console.log('listening on 8080');
     });
-})
-
-var path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
-
-
     //글쓰기(add)
     app.post('/add', function (req, res) {
         db.collection('Counter').findOne({ name:'게시물개수'}, function (err, result) {
@@ -53,6 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
     });
 
 });
+
+
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 /* page rendering */
@@ -115,7 +100,7 @@ app.get('/community', function (req, res) {
 app.get('/community/free', function (req, res) {
     db.collection('Post').find().toArray(function(error, result){
         console.log(result)
-        res.render('community/comm_free.ejs', { posts : result })
+        res.render('community/comm_free.ejs', { posts : result, post_id: parseInt(req.params.id)})
       })
 });
 
@@ -149,14 +134,10 @@ app.get('/community/detail/:id', function (req, res) {
         if (err) {
             console.log(err)
         }
-        res.render('community/detail.ejs', { posts : result })
+        console.log(result);
+        res.render('community/comm_detail.ejs', { data: result });
     })
 })
-
-app.get('/community/detail', function (req, res) {
-    res.render('community/comm_detail.ejs');
-})
-
 
 /* challenge */
 

@@ -41,7 +41,7 @@
 
   <!-- post 읽어오기 -->
   <% for (var i = 0; i < posts.length; i++){ %>
-    <a href="/community/detail/:id">
+    <a href="/community/detail/",<%= posts.post_id %>>
       <table class="selected">
         <tr>
           <td class="title"><%= posts[i].title %></td>
