@@ -5,17 +5,21 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
+var db;
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
+    if (err) {console.log(err)}
+
+    db = client.db('The_Healthiest');
+
+    app.listen(8080, function(){
+        console.log('db connected..');
+    });
+})
+
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-//const MongoClient = require('mongodb').MongoClient;
-//MongoClient.connect('mongodb+srv://admin:health123@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
-    
-//})
-
-app.listen(8080, function(){
-        console.log('listening on 8080');
-    });
 
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/views/main/main_before_login.html');
@@ -159,3 +163,11 @@ app.get('/mypage/settingCommunity', function (req, res) {
 app.get('/mypage/symptom', function (req, res) {
     res.render('mypage/symptom.ejs');
 });
+
+app.post('/add', function(req, res){
+    console.log('전송완료');
+    console.log(req.body);
+    db.collection('User').insertOne({user_id: req.body.id, 
+        pwd: req.body.pwd, name: req.body.name, birth: req.body.birthday, 
+        nickname: req.body.nickname, email: req.body.email, agree: req.body.check_info});
+})
