@@ -100,8 +100,8 @@ header {
   }
 
   .submit_btn {
-    margin-right:3%; 
-    margin-top: -3%;
+    margin-left: auto;
+    margin-right: 45%;
     border-radius: 1.875em;
     width: 151px;
     height: 57px;
@@ -182,4 +182,20 @@ header {
 
   .numbers{
     font-size: 26px;;
+  }
+
+
+  /* write */
+
+  .writeTitle {
+    width:80%;
+    border:none;
+    background-color: transparent;
+  }
+
+  .writeContent {
+    width: 98%;
+    height: 95%;
+    border:none;
+    background-color: transparent;
   }
