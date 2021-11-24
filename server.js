@@ -171,3 +171,47 @@ app.post('/add', function(req, res){
         pwd: req.body.pwd, name: req.body.name, birth: req.body.birthday, 
         nickname: req.body.nickname, email: req.body.email, agree: req.body.check_info});
 })
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+app.post('/login', passport.authenticate('local', {
+    failureRedirect : '/login'
+}), function(req, res){
+    res.redirect('/main');
+});
+
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pwd',
+    session: true,
+    passReqToCallback: false,
+}, function(input_id, input_pwd, done){
+    console.log(input_id, input_pwd);
+    db.collection('User').findOne({user_id: input_id}, function(err, result){
+        console.log(result);
+        if (err) return done(err);
+        if (!result) {
+            console.log(5)
+            return done(null, false, {message : '존재하지 않는 아이디입니다.'})
+        }
+        if (input_pwd == result.pwd){
+            return done(null, result)
+        } else {
+            return done(null, false, {message:'비밀번호가 틀렸습니다.'})
+        }
+    })
+}));
+
+passport.serializeUser(function (user, done){
+    done(null, user.user_id)
+});
+
+passport.deserializeUser(function(id, done){
+    done(null, {})
+});
