@@ -8,12 +8,12 @@ app.set('view engine', 'ejs');
 var db;
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
-    if (err) {console.log(err)}
+    if (err) return console.log(err)
 
     db = client.db('The_Healthiest');
 
     app.listen(8080, function(){
-        console.log('db connected..');
+        console.log('listening on 8080');
     });
 })
 
