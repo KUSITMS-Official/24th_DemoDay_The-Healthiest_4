@@ -40,11 +40,29 @@ var upload = multer({
 
 /* DB 연결 */
 var db;
+var id_list, nick_list, mail_list;
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
     if (err) return console.log(err)
 
     db = client.db('The_Healthiest');
+    db.collection('User').find({},{projection:{ user_id : 1, _id : 0}}).toArray(function(err, user_id){
+        console.log(user_id);
+        id_list = user_id;
+        if (err) return done(err);
+    });
+    db.collection('User').find({},{projection:{ nickname : 1, _id : 0}}).toArray(function(err, nickname){
+        console.log(nickname);
+        nick_list = nickname;
+        if (err) return done(err);
+    });
+    db.collection('User').find({},{projection:{ email : 1, _id : 0}}).toArray(function(err, email){
+        console.log(email);
+        mail_list = email;
+        if (err) return done(err);
+    });
+
+
 
     app.listen(8080, function(){
         console.log('listening on 8080');
@@ -101,6 +119,8 @@ app.get('/image/:imageName', function(req, res){
   })
 
 
+
+
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -120,7 +140,8 @@ app.get('/login', function(req, res){
 });
 
 app.get('/join', function(req,  res){
-    res.sendFile(__dirname+'/views/main/join.html');
+    res.render('main/join.ejs', {id_list:id_list, nick_list:nick_list, mail_list:mail_list});
+    //res.sendFile(__dirname+'/views/main/join.html');
 });
 
 app.get('/info', function(req, res){
@@ -166,7 +187,7 @@ app.get('/community/free', function (req, res) {
     db.collection('Post').find().toArray(function(error, result){
         console.log(result)
         res.render('community/comm_free.ejs', { posts : result})
-      })
+    })
 });
 
 app.get('/community/bodytype', function (req, res) {
@@ -174,7 +195,7 @@ app.get('/community/bodytype', function (req, res) {
     db.collection('Post').find().toArray(function(error, result){
         console.log(result)
         res.render('community/comm_body.ejs', { posts : result})
-      });
+    });
 });
 
 app.get('/community/crew', function (req, res) {
@@ -296,7 +317,7 @@ app.get('/mypage/symptom', function (req, res) {
 
 app.post('/add', function(req, res){
     console.log('전송완료');
-    console.log(req.body);
+    console.log(res.body);
     db.collection('User').insertOne({user_id: req.body.id, 
         pwd: req.body.pwd, name: req.body.name, birth: req.body.birthday, 
         nickname: req.body.nickname, email: req.body.email, agree: req.body.check_info});
@@ -311,7 +332,8 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 
 app.post('/login', passport.authenticate('local', {
-    failureRedirect : '/login'
+    failureRedirect : '/login',
+    failureFlash : true
 }), function(req, res){
     res.redirect('/main');
 });
@@ -327,7 +349,6 @@ passport.use(new LocalStrategy({
         console.log(result);
         if (err) return done(err);
         if (!result) {
-            console.log(5)
             return done(null, false, {message : '존재하지 않는 아이디입니다.'})
         }
         if (input_pwd == result.pwd){
@@ -344,14 +365,14 @@ passport.serializeUser(function (user, done){
 
 passport.deserializeUser(function (id, done) {
     db.collection('User').findOne({ user_id : id }, function (err, result) {
-      done(null, result)
+    done(null, result)
     })
-  }); 
+}); 
 
 app.get('/callnignickname', function (req, res) {
     db.collection('User').find().toArray(function(error, result){
         console.log(result)
         res.render('mypage/my.ejs', {  User : result })
-      })
+    })
 });
 
