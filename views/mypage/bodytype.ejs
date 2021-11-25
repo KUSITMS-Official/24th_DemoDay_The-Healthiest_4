@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- CSS  -->
+        <link rel="stylesheet" type="text/css" href="../css/bodytype.css">
+        <link rel="stylesheet" type="text/css" href="../css/nav_css_after_login.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <title>Body type</title>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar">
+                <a id="logo" href="/main">
+                    <img src="../img/nav-logo.png" class="navbar-brand">
+                </a>
+                <form class="d-flex">
+                    <a href="/mypage" class="btn" id="btn1" tabindex="-1" role="button" aria-disabled="true">마이페이지</a> &nbsp;&nbsp;
+                    <a href="/" class="btn" id="btn2" tabindex="-1" role="button" aria-disabled="true">로그아웃</a>
+                    <div class="nav-item dropdown">
+                        <button class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="2.5em" height="2.5em" viewBox="0 0 30 30" role="img" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/info2">소개 페이지</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/health2">건강 관리</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/community">커뮤니티</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/challenge/introduce">챌린지</a>
+                        </div> 
+                    </div>
+                </form>
+            </nav>
+        </header>
+
+        <div class = "outter">
+
+            <div class="my">
+                <div class="mynameoutter">
+                    <div class="myname">불러오기</div>
+                    <div id="dear">님</div>
+                </div>
+                
+                <div class="msg">
+                    <div OnClick="location.href ='/mypage_mailbox'" style="cursor:pointer;" class="msgroom">쪽지함</div>
+                    <div class="msgcnt">0</div>
+                </div>
+            </div>   
+            
+            <div class="settingspaceoutter">
+                <div id="title">체형의 수정이 필요한 부분을 변경해주세요. (최대 3개 선택 가능)</div>
+
+                    <div class="settingspace" >
+                
+                
+                    <div class="buttonoutter">
+                        <button class="choice_btn" style="background-color: white; margin-right: 30px;" type="submit">영양 부족</button>
+                        <button class="choice_btn" style="background-color: white; margin-right: 30px;" type="submit">저체중</button>
+                        <button class="choice_btn" style="background-color: white;" type="submit">정상체중</button><br><br>
+                        <button class="choice_btn" style="background-color: #B5EBFF; margin-right: 30px;" type="submit">과체중</button>
+                        <button class="choice_btn" style="background-color: white;" type="submit">비만</button>
+                    </div>
+                
+                    <hr style="margin-left: 10%; margin-right: 10%; border-color: black; border-width: 2px;">
+                
+                    <div class="buttonoutter buttonoutter2">
+                        <button class="choice_btn" style="background-color: white; margin-right: 30px;" type="submit">상체 비만</button>
+                        <button class="choice_btn" style="background-color: white; margin-right: 30px;" type="submit">하체 비만</button>
+                        <button class="choice_btn" style="background-color: white;" type="submit">마른 비만</button><br><br>
+                        <button class="choice_btn" style="background-color: #B5EBFF; margin-right: 30px;" type="submit">초고도비만</button>
+                        <button class="choice_btn" style="background-color: white; margin-right: 30px;" type="submit">뱃살 과다</button>
+                        <button class="choice_btn" style="background-color: white;" type="submit">근육 부족</button>
+                        <br><br>
+                    </div>
+                
+                </div>
+                <button class="revisebttn" data-toggle="modal" data-target="#exampleModal5">선택 완료</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <br />
+                                <br />
+                                    <div class="modal-h">'나의 체형' 설정 변경이<br> 성공적으로 완료되었습니다.</div>
+                                <br />
+                                <br />
+                                <button class="modal-b" type="button"  data-dismiss="modal"  aria-label="Close">확인</button>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+                
+
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+                <script script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>     
+            
+    </body>
+
+</html>

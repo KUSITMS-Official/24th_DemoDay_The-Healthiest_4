@@ -6,7 +6,14 @@ div{
     width: 9.125em;
 }
 .input_text{
-    width:48.125em;
+    width:52em;
+    height: 3.75em;
+    border-radius: 0.625em;
+    background-color: #DBDBDB;
+    border-style: none;
+}
+.input_text1{
+    width:40em;
     height: 3.75em;
     border-radius: 0.625em;
     background-color: #DBDBDB;

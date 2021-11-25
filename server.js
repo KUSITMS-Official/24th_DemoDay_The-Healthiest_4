@@ -3,18 +3,43 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.set('view engine', 'ejs');
+
+var db;
+var id_list, nick_list, mail_list;
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
+    if (err) return console.log(err)
+
+    db = client.db('The_Healthiest');
+    db.collection('User').find({},{projection:{ user_id : 1, _id : 0}}).toArray(function(err, user_id){
+        console.log(user_id);
+        id_list = user_id;
+        if (err) return done(err);
+    });
+    db.collection('User').find({},{projection:{ nickname : 1, _id : 0}}).toArray(function(err, nickname){
+        console.log(nickname);
+        nick_list = nickname;
+        if (err) return done(err);
+    });
+    db.collection('User').find({},{projection:{ email : 1, _id : 0}}).toArray(function(err, email){
+        console.log(email);
+        mail_list = email;
+        if (err) return done(err);
+    });
+
+
+
+    app.listen(8080, function(){
+        console.log('listening on 8080');
+    });
+})
+
+
 
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-//const MongoClient = require('mongodb').MongoClient;
-//MongoClient.connect('mongodb+srv://admin:health123@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
-    
-//})
-
-app.listen(8080, function(){
-        console.log('listening on 8080');
-    });
 
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/views/main/main_before_login.html');
@@ -28,8 +53,9 @@ app.get('/login', function(req, res){
     res.sendFile(__dirname+'/views/main/login.html');
 });
 
-app.get('/join', function(req, res){
-    res.sendFile(__dirname+'/views/main/join.html');
+app.get('/join', function(req,  res){
+    res.render('main/join.ejs', {id_list:id_list, nick_list:nick_list, mail_list:mail_list});
+    //res.sendFile(__dirname+'/views/main/join.html');
 });
 
 app.get('/info', function(req, res){
@@ -64,35 +90,37 @@ app.get('/hometraining_main2', function(req, res){
     res.sendFile(__dirname+'/views/main/hometraining_after_login.html');
 });
 
-
-
 app.get('/community', function (req, res) {
     res.render('community/comm_list.ejs');
 });
 
-app.get('/comm_free', function (req, res) {
+app.get('/community/free', function (req, res) {
     res.render('community/comm_free.ejs');
 });
 
-app.get('/comm_body', function (req, res) {
+app.get('/community/bodytype', function (req, res) {
     res.render('community/comm_body.ejs');
 });
 
-app.get('/comm_crew', function (req, res) {
+app.get('/community/crew', function (req, res) {
     res.render('community/comm_crew.ejs');
 });
 
-app.get('/comm_tips', function (req, res) {
+app.get('/community/tips', function (req, res) {
     res.render('community/comm_tips.ejs');
 });
 
-app.get('/comm_meal', function (req, res) {
+app.get('/community/meal', function (req, res) {
     res.render('community/comm_meal.ejs');
 });
 
-app.get('/comm_go', function (req, res) {
+app.get('/community/grouporder', function (req, res) {
     res.render('community/comm_go.ejs');
 });
+
+app.get('/community/write', function(req, res){
+    res.render('community/comm_write.ejs');
+})
 
 app.get("/challenge/introduce", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-introduce.html");
@@ -108,4 +136,101 @@ app.get("/challenge/payment", function (req, res) {
 
 app.get("/challenge/stamp", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-stamp.html");
+});
+
+app.get('/mypage', function (req, res) {
+    res.render('mypage/mypage.ejs');
+});
+
+app.get('/mypage/ask', function (req, res) {
+    res.render('mypage/askTheHealthiest.ejs');
+});
+
+app.get('/mypage/bodytype', function (req, res) {
+    res.render('mypage/bodytype.ejs');
+});
+
+app.get('/mypage/challengeExsisted', function (req, res) {
+    res.render('mypage/challengeExsisted.ejs');
+});
+
+app.get('/mypage/challengeNone', function (req, res) {
+    res.render('mypage/challengeNone.ejs');
+});
+
+app.get('/mypage/mail', function (req, res) {
+    res.render('mypage/mail.ejs');
+});
+
+app.get('/mypage/mailbox', function (req, res) {
+    res.render('mypage/mailbox.ejs');
+});
+
+app.get('/mypage/mywriting', function (req, res) {
+    res.render('mypage/mywriting.ejs');
+});
+
+app.get('/mypage/revisingwriting', function (req, res) {
+    res.render('mypage/revisingwriting.ejs');
+});
+app.get('/mypage/settingAccount', function (req, res) {
+    res.render('mypage/setting.ejs');
+});
+app.get('/mypage/settingCommunity', function (req, res) {
+    res.render('mypage/setting2.ejs');
+});
+app.get('/mypage/symptom', function (req, res) {
+    res.render('mypage/symptom.ejs');
+});
+
+app.post('/add', function(req, res){
+    console.log('전송완료');
+    console.log(res.body);
+    db.collection('User').insertOne({user_id: req.body.id, 
+        pwd: req.body.pwd, name: req.body.name, birth: req.body.birthday, 
+        nickname: req.body.nickname, email: req.body.email, agree: req.body.check_info});
+})
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+app.post('/login', passport.authenticate('local', {
+    failureRedirect : '/login',
+    failureFlash : true
+}), function(req, res){
+    res.redirect('/main');
+});
+
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pwd',
+    session: true,
+    passReqToCallback: false,
+}, function(input_id, input_pwd, done){
+    console.log(input_id, input_pwd);
+    db.collection('User').findOne({user_id: input_id}, function(err, result){
+        console.log(result);
+        if (err) return done(err);
+        if (!result) {
+            return done(null, false, {message : '존재하지 않는 아이디입니다.'})
+        }
+        if (input_pwd == result.pwd){
+            return done(null, result)
+        } else {
+            return done(null, false, {message:'비밀번호가 틀렸습니다.'})
+        }
+    })
+}));
+
+passport.serializeUser(function (user, done){
+    done(null, user.user_id)
+});
+
+passport.deserializeUser(function(id, done){
+    done(null, {})
 });
