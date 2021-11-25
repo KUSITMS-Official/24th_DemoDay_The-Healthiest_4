@@ -5,6 +5,40 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
+/* for pagination */
+const mongoose = require("mongoose");
+var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+
+/* image upload */
+let multer = require('multer');
+var storage = multer.diskStorage({
+
+  destination : function(req, file, cb){
+    cb(null, './public/image')
+  },
+  filename : function(req, file, cb){
+    cb(null, file.originalname )
+  }
+
+});
+
+var path = require('path');
+
+var upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+            return callback(new Error('PNG, JPG만 업로드하세요'))
+        }
+        callback(null, true)
+    },
+    limits:{
+        fileSize: 1024 * 1024
+    }
+});
+
+/* DB 연결 */
 var db;
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
@@ -21,7 +55,7 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
             var totalPost = result.totalPost;   
             var dataPost = { title: req.body.title, content: req.body.content, post_id: totalPost + 1,
                 created_at: new Date()+(3600000*9), updated_at: new Date()+(3600000*9), category: req.body.category, subcategory: req.body.subcategory,
-                user_id: req.user.user_id
+                user_id: req.user.user_id, categoryname: req.body.categoryname, file: req.body.이미지
             }
             db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
                 //counter collection의 totalPost도 1 증가시키기
@@ -35,7 +69,36 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
             });
         });;
     });
+
+    app.post('/addComment', function (req, res) {
+        db.collection('Counter').findOne({ name:'게시물개수'}, function (err, result) {
+            var totalPost = result.totalPost;   
+            var dataPost = { title: req.body.title, content: req.body.content, post_id: totalPost + 1,
+                created_at: new Date()+(3600000*9), updated_at: new Date()+(3600000*9), category: req.body.category, subcategory: req.body.subcategory,
+                user_id: req.user.user_id, categoryname: req.body.categoryname, file: req.body.이미지
+            }
+            db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
+                //counter collection의 totalPost도 1 증가시키기
+                //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
+                db.collection('Counter').updateOne({ name: '게시물개수' }, { $inc: { totalPost: 1 } }, function (err, result) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
+                })
+            });
+        });;
+    });
+
+    app.post('/upload', upload.single('이미지'), function(req, res){
+        res.send('업로드완료')
+      }); 
+
 });
+
+app.get('/image/:imageName', function(req, res){
+    res.sendFile( __dirname + '/public/image/' + res.params.imageName )
+  })
 
 
 var path = require('path');
@@ -107,9 +170,9 @@ app.get('/community/free', function (req, res) {
 });
 
 app.get('/community/bodytype', function (req, res) {
+
     db.collection('Post').find().toArray(function(error, result){
         console.log(result)
-        //const { page = 1, limit = 10} = req.query;
         res.render('community/comm_body.ejs', { posts : result})
       });
 });

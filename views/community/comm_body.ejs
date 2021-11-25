@@ -25,6 +25,7 @@
       var x = document.getElementById("subcat");
       x.style.color = "#61A0E8";
       x.style.boxShadow = "0px 4px 0px #61A0E8";
+      $(document).getElementById("sub1")
     }
   </script>
 
@@ -50,21 +51,25 @@
 
 
 
-  <div class="row subrow">
-    <div class="col"><span id="subcat">&nbsp&nbsp영양 부족형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp초고도비만형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp근육 부족형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp저체중형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp하체 비만형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp상체 비만형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp마른 비만형&nbsp&nbsp</span></div>
-    <div class="col"><span id="subcat">&nbsp&nbsp과체중형&nbsp&nbsp</span></div>
+  <div class="row subrow" style="z-index: -10;">
+    <div class="col"><span name="sub1" id="sub1">&nbsp&nbsp영양 부족형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub2" id="subcat">&nbsp&nbsp초고도비만형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub3" id="subcat">&nbsp&nbsp근육 부족형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub4" id="subcat">&nbsp&nbsp저체중형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub5" id="subcat">&nbsp&nbsp하체 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub6" id="subcat">&nbsp&nbsp상체 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub7" id="subcat">&nbsp&nbsp마른 비만형&nbsp&nbsp</span></div>
+    <div class="col"><span name="sub8" id="subcat">&nbsp&nbsp과체중형&nbsp&nbsp</span></div>
   </div>
+  
+
+<div name="postbox"></div>
 
 
     <!-- post 읽어오기 -->
     <% for (var i = 0; i < posts.length; i++){ %>
       <% if(posts[i].category =='bodytype'){ %>
+      <% if(posts[i].subcategory =='영양부족형'){ %>
       <a href="/community/detail/<%= posts[i].post_id %>">
         <table class="selected">
           <tr>
@@ -79,14 +84,15 @@
             <td class="summary"> <%= posts[i].content %><span class="extra">...더 보기</span></td>
           </tr>
         </table>
-      </a>    
+      </a>  
       <%} %>
-      <% } %>
+      <%} %>
+      <%} %>
 
   <div style="text-align: center; margin-top:15px;">
-<a style="color:#0E52A0; font-size:24px; margin-right: 80px;"> &lt 이전</a>
-<span style="font-size: 32px"> <b>1</b> &nbsp 2 &nbsp  3 &nbsp  4 &nbsp  5</span>
-<a style="color:#0E52A0; font-size:24px; margin-left: 80px"> 다음 &gt </a>
+<a style="color:#0E52A0; font-size:20px; margin-right: 80px;"> &lt 이전</a>
+<span style="font-size: 26px"> <b>1</b> &nbsp 2 &nbsp  3 &nbsp  4 &nbsp  5</span>
+<a style="color:#0E52A0; font-size:20px; margin-left: 80px"> 다음 &gt </a>
 
   </div> 
 <button onClick="location.href='/community/bodytype/write'" type="button" class="write_btn">글 작성</button>

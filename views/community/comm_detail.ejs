@@ -35,7 +35,7 @@
       <td style="width:20px;"></td>
       <td><a href="/community/<%= data.category %>"><img src="/img/backspace.png"></a></td>
       <td>
-        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;">자유게시판</div>
+        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;"> <%= data.categoryname %> </div>
       </td>
     </table>
 
@@ -122,12 +122,14 @@
 
 </div>
 
+<form action="/addComment" method="POST">
 <div>
   <table style="width:100%; bottom:0px; position: fixed">
     <td style="font-size: 20px; background-color: #F6F6F6; text-align: left; padding-left: 1em; color:#898989">댓글을 입력하세요</td>
     <td style="font-size: 30px; background-color: #61A0E8; color:white; font-weight: bold; width: 10.5%;">완료</td>
   </table>
 </div>
+</form>
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
