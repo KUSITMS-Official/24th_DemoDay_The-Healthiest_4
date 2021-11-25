@@ -173,7 +173,7 @@ td{
     height: 3em;
     color: white;
     text-align: start;
-    padding-left: 15px;
+    padding-left: 25px;
     font-size: 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -181,6 +181,7 @@ td{
     display: flex;  
     flex-direction: row;
     padding-top: 15px;
+
 }
 
 .submitbttn{
@@ -195,7 +196,7 @@ td{
 }
 
 .filebox{
-    margin-left: 29.3em;
+    margin-left: 34em;
 }
 .filebox label {
     color: black;
