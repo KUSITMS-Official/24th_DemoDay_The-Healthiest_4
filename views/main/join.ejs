@@ -41,7 +41,7 @@
             <table>
                 <tr>
                     <td style="width: 31em;">
-                        <div id="same_mail" style="text-align: left;"></div>
+                        <div id="same_mail"></div>
                     </td>
                     <td>
                         <input type="checkbox" name="check_info">맞춤혜택 및 광고/마케팅 수신을 동의합니다.
@@ -157,7 +157,7 @@
         function check_id(id){
             var input_id = document.getElementById(id);
             var id_list = document.getElementById('id_list').innerHTML;
-            if (id_list.indexOf(input_id.value) != -1) {
+            if (id_list.includes(input_id.value) ) {
                 document.getElementById('same_id').innerHTML='이미 사용중인 아이디입니다.';
                 document.getElementById('same_id').style.color='red';
             } else {
@@ -169,25 +169,25 @@
         function check_nick(id){
             var input_id = document.getElementById(id);
             var nick_list = document.getElementById('nick_list').innerHTML;
-            if (nick_list.includes(input_id.value)) {
+            if (nick_list.includes(input_id.value) ) {
                 document.getElementById('same_nick').innerHTML='이미 사용중인 닉네임입니다.'
                 document.getElementById('same_nick').style.color='red';
             } else {
-                document.getElementById('same_nick').innerHTML='사용가능합니다.'
-                document.getElementById('same_nick').style.color='blue';
-            }
+                    document.getElementById('same_nick').innerHTML='사용가능합니다.'
+                    document.getElementById('same_nick').style.color='blue';
+                }
         };
 
         function check_mail(id){
             var input_id = document.getElementById(id);
             var mail_list = document.getElementById('mail_list').innerHTML;
-            if (mail_list.includes(input_id.value)) {
+            if (mail_list.includes(input_id.value) ) {
                 document.getElementById('same_mail').innerHTML='이미 사용중인 이메일입니다.'
                 document.getElementById('same_mail').style.color='red';
             } else {
-                document.getElementById('same_mail').innerHTML='사용가능합니다.'
-                document.getElementById('same_mail').style.color='blue';
-            }
+                    document.getElementById('same_mail').innerHTML='사용가능합니다.'
+                    document.getElementById('same_mail').style.color='blue';
+                }
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
