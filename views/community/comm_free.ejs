@@ -36,45 +36,28 @@
           class="fas fa-search fa-lg search_icon"></i></a>
     </span>
   </div>
-  <img style="width: 100%" src="../img/banner.png">
+  <img style="width: 100%" src="../img/banner_blue.png">
 
-
-  <!-- 글 예시 -->
-  <a href="/comm_detail">
-    <table class="selected">
-      <tr>
-        <td class="title">ENFP 모두 모여</td>
-        <td class="icons" rowspan="2">
-          <div class="thumb_icon"><img src="../img/icon-thumb.png"> 10</div>
-          <div class="comment_icon"><img src="../img/icon-comment.png"> 25
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="summary">운동에 입문한 지 얼마 안된 헬린이 입니다.
-          MBTI를 맹신하는 편이라 혹시 ENFP들 헬스 좋아하시나요?
-          제 주위 ENFP들은 안 좋아해서.. 헬시스트에서 찾고 싶어요ㅠㅠ <span class="extra">...더 보기</span></td>
-      </tr>
-    </table>
-  </a>
 
   <!-- post 읽어오기 -->
-  <% for (var i = 0; i < 4; i++){ %>
-    <a href="/comm_detail">
+  <% for (var i = 0; i < posts.length; i++){ %>
+    <% if(posts[i].category =='free'){ %>
+    <a href="/community/detail/<%= posts[i].post_id %>">
       <table class="selected">
         <tr>
-          <td class="title">글 제목</td>
+          <td class="title"><%= posts[i].title %></td>
           <td class="icons" rowspan="2">
-            <div class="thumb_icon"><img src="../img/icon-thumb.png"> 10</div>
-            <div class="comment_icon"><img src="../img/icon-comment.png"> 25
+            <div class="thumb_icon"><img src="/img/icon-thumb-blue.png"> 10</div>
+            <div class="comment_icon"><img src="/img/icon-comment-blue.png"> 25
             </div>
           </td>
         </tr>
         <tr>
-          <td class="summary">글 내용 (100자 내외만 보여짐)<span class="extra">...더 보기</span></td>
+          <td class="summary"> <%= posts[i].content %><span class="extra">...더 보기</span></td>
         </tr>
       </table>
     </a>    
+    <% } %>
     <% } %>
 
 
@@ -87,7 +70,7 @@
   </div>
 
   
-  <button onClick="location.href='/community/write'" type="button" class="write_btn">글 작성</button>
+  <button onClick="location.href='/community/free/write'" type="button" class="write_btn">글 작성</button>
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
