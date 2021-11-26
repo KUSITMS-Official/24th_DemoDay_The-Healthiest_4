@@ -32,6 +32,9 @@ body{
     height: 2.5em;
     font-size: 1em;
     background-color: #6BD7FF; 
+    color: black;
+    text-align: center;
+    padding: 7px;
 }
 .nav-item{
     position: relative;
