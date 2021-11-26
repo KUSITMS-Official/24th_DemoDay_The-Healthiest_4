@@ -54,14 +54,14 @@
                     <tbody>
                     <% for (var i = 0; i < mail.length; i++){ %>
                         <% if(mail[i].reciever == user_id){ %>
-                          
-                                <tr style="border-bottom: 1px dotted #83BDFF;" onclick="location.href='/mypage/checkMail'">
+                       
+
+                                <tr style="border-bottom: 1px dotted #83BDFF;" onclick="location.href='/mypage/checkmail/<%= mail[i].mail_id %>'">
                                     <td><%= mail[i].sender %></td>
                                     <td><%= mail[i].title %></td>
                                 </tr>
                      
                         
-                      
                         <%} %>
                     <% } %>
                     </tbody>

@@ -148,6 +148,10 @@ td{
     border-bottom-right-radius: 10px;
     width: 46.250em;
     padding-left: 0.938em;
+    text-align: start;
+    font-weight: 700;
+    padding-top: 10px;
+    
 }
 
 .titleinput{
@@ -157,6 +161,9 @@ td{
     border-bottom-right-radius: 10px;
     width: 46.25em;
     padding-left: 0.938em;
+    text-align: start;
+    font-weight: 700;
+    padding-top: 10px;
 }
 
 .contentsoutter{
@@ -232,6 +239,10 @@ td{
       background-color: #EDEDED;
       border: none;
       width: 54em;
+      text-align: start;
+      font-weight: 700;
+      padding-top: 10px;
+      padding-left: 30px;
 
   }
 

@@ -338,15 +338,28 @@ app.get('/mypage/mail', 로그인했니, function (req, res) {
 
 //쪽지 보내기
 app.post('/addmail', function(req, res){
-    console.log('메세지 전송');
-    db.collection('Mail').insertOne({
-        sender: req.user.user_id,
-        reciever: req.body.reciever, 
-        send_time: new Date()+(3600000*9),
-        title: req.body.title,
-        file: req.body.file, 
-        content: req.body.content});
-})
+    db.collection('CounterForMail').findOne({ name:'메일갯수'}, function (err, result) {
+        var totalMail = result.totalMail;   
+        var dataMail = { 
+            sender: req.user.user_id,
+            mail_id: totalMail + 1,
+            reciever: req.body.reciever, 
+            send_time: new Date()+(3600000*9),
+            title: req.body.title,
+            file: req.body.file, 
+            content: req.body.content}
+        
+
+        db.collection('Mail').insertOne(dataMail, function (err, result){
+            db.collection('CounterForMail').updateOne({ name: '메일갯수' }, { $inc: { totalMail: 1 } }, function (err, result) {
+                if (err) {
+                    console.log(err)
+                }     
+                res.redirect("/mypage/mailbox")
+                })
+            });
+        });
+    });
 
 
 
@@ -355,7 +368,7 @@ app.post('/addmail', function(req, res){
 app.get('/mypage/mailbox', function (req, res) {
     console.log(req.user.user_id)
     db.collection('Mail').find().toArray(function (err, result){
-        console.log(result)
+        
         res.render('mypage/mailbox.ejs', { mail: result, user_id : req.user.user_id})
     })
     
@@ -363,15 +376,15 @@ app.get('/mypage/mailbox', function (req, res) {
 
 
 
-//쪽지 불러오기 
+//쪽지 (디테일) 불러오기 
 
-app.get('/mypage/checkmail', function (req, res) {
-    console.log(req.user.user_id)
-    db.collection('Mail').find().toArray(function (err, result){
-        console.log(result)
-        res.render('mypage/checkmail.ejs', { mail: result, user_id : req.user.user_id})
+app.get('/mypage/checkmail/:id', function (req, res) {
+    db.collection('Mail').findOne({mail_id : parseInt(req.params.id) }, function (err, result) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(result);
+        res.render('mypage/checkmail.ejs', { mail: result })
     })
-    
 });
-
 
