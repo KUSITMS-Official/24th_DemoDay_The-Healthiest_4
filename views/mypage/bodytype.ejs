@@ -42,15 +42,14 @@
 
             <div class="my">
                 <div class="mynameoutter">
-                    <div class="myname">불러오기</div>
+                    <div class="myname" style ="font-weight: bold; padding-top: 5px; font-size: 1.1em;"> <%= user_id %> </div>
                     <div id="dear">님</div>
                 </div>
-                
                 <div class="msg">
-                    <div OnClick="location.href ='/mypage_mailbox'" style="cursor:pointer;" class="msgroom">쪽지함</div>
+                    <div OnClick="location.href ='/mypage/mailbox'" style="cursor:pointer;" class="msgroom">쪽지함</div>
                     <div class="msgcnt">0</div>
                 </div>
-            </div>   
+            </div>
             
             <div class="settingspaceoutter">
                 <div id="title">체형의 수정이 필요한 부분을 변경해주세요. (최대 3개 선택 가능)</div>
@@ -103,7 +102,14 @@
                 
 
                 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-                <script script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>     
+                <script script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>    
+                
+                <script>
+                let choice_btn = document.querySelector('.choice_btn');
+                
+                choice_btn.addEventListener('click',() => choice_btn.style.backgroundColor = '#B5EBFF')
+            
+                </script>
             
     </body>
 

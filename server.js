@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
+const router = express.Router();
 
+
+//DB연결
 var db;
 var id_list, nick_list, mail_list;
 const MongoClient = require('mongodb').MongoClient;
@@ -30,9 +33,26 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
 
 
 
+
     app.listen(8080, function(){
         console.log('listening on 8080');
     });
+
+const mongoose = require('mongoose');
+module.exports = () => {
+  function connect() {
+    mongoose.connect('localhost:8080', function(err) {
+      if (err) {
+        console.error('mongodb connection error', err);
+      }
+      console.log('mongodb connected');
+    });
+  }
+  connect();
+  mongoose.connection.on('disconnected', connect);
+  require('mypage/mailbox'); 
+};
+    
     //글쓰기(add)
     app.post('/addPost', function (req, res) {
         db.collection('Counter').findOne({ name:'게시물개수'}, function (err, result) {
@@ -207,50 +227,15 @@ app.get("/challenge/stamp", function (req, res) {
     res.sendFile(__dirname+"/views/challenge/challenge-stamp.html");
 });
 
-app.get('/mypage', function (req, res) {
-    res.render('mypage/mypage.ejs');
-});
+/*my page */ 
+
 
 app.get('/mypage/ask', function (req, res) {
     res.render('mypage/askTheHealthiest.ejs');
 });
 
-app.get('/mypage/bodytype', function (req, res) {
-    res.render('mypage/bodytype.ejs');
-});
 
-app.get('/mypage/challengeExsisted', function (req, res) {
-    res.render('mypage/challengeExsisted.ejs');
-});
 
-app.get('/mypage/challengeNone', function (req, res) {
-    res.render('mypage/challengeNone.ejs');
-});
-
-app.get('/mypage/mail', function (req, res) {
-    res.render('mypage/mail.ejs');
-});
-
-app.get('/mypage/mailbox', function (req, res) {
-    res.render('mypage/mailbox.ejs');
-});
-
-app.get('/mypage/mywriting', function (req, res) {
-    res.render('mypage/mywriting.ejs');
-});
-
-app.get('/mypage/revisingwriting', function (req, res) {
-    res.render('mypage/revisingwriting.ejs');
-});
-app.get('/mypage/settingAccount', function (req, res) {
-    res.render('mypage/setting.ejs');
-});
-app.get('/mypage/settingCommunity', function (req, res) {
-    res.render('mypage/setting2.ejs');
-});
-app.get('/mypage/symptom', function (req, res) {
-    res.render('mypage/symptom.ejs');
-});
 
 app.post('/add', function(req, res){
     console.log('전송완료');
@@ -275,6 +260,7 @@ app.post('/login', passport.authenticate('local', {
     res.redirect('/main');
 });
 
+
 passport.use(new LocalStrategy({
     usernameField: 'id',
     passwordField: 'pwd',
@@ -289,6 +275,7 @@ passport.use(new LocalStrategy({
             return done(null, false, {message : '존재하지 않는 아이디입니다.'})
         }
         if (input_pwd == result.pwd){
+            user_idplz = result.user_id;
             return done(null, result)
         } else {
             return done(null, false, {message:'비밀번호가 틀렸습니다.'})
@@ -296,20 +283,129 @@ passport.use(new LocalStrategy({
     })
 }));
 
-passport.serializeUser(function (user, done){
+//민선 section
+
+//세션만들기 로그인 성공시 발동
+passport.serializeUser(function(user, done){
     done(null, user.user_id)
 });
 
-passport.deserializeUser(function (id, done) {
-    db.collection('User').findOne({ user_id : id }, function (err, result) {
-    done(null, result)
+//이 세션 데이터를 가진 사람을 DB에서 찾아주세요 (마이페이지 접속시 발동)
+passport.deserializeUser(function(id, done){
+    db.collection('User').findOne({user_id : id}, function(err,result) {
+      done(null, result)
     })
-}); 
+});
 
-app.get('/callnignickname', function (req, res) {
-    db.collection('User').find().toArray(function(error, result){
-        console.log(result)
-        res.render('mypage/my.ejs', {  User : result })
+
+
+// 마이페이지 닉네임 불러와야하는 페이지들 
+
+function 로그인했니(req, res, next){
+    if (req.user){
+        next()
+    } else {
+        res.send('로그인 안했음')
+    }
+}
+
+app.get('/mypage', 로그인했니, function(req,res){
+        console.log(req.user);
+        res.render('mypage/mypage.ejs', {user_id : req.user.user_id});   
+});
+
+app.get('/mypage/bodytype', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/bodytype.ejs', {user_id : req.user.user_id});
+});
+
+app.get('/mypage/challengeExsisted', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/challengeExsisted.ejs', {user_id : req.user.user_id});
+});
+
+app.get('/mypage/challengeNone', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/challengeNone.ejs', {user_id : req.user.user_id});
+});
+
+
+app.get('/mypage/mywriting', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/mywriting.ejs', {user_id : req.user.user_id});
+});
+
+app.get('/mypage/revisingwriting', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/revisingwriting.ejs', {user_id : req.user.user_id});
+});
+app.get('/mypage/settingAccount', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/setting.ejs', {user_id : req.user.user_id});
+});
+app.get('/mypage/settingCommunity', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/setting2.ejs', {user_id : req.user.user_id});
+});
+app.get('/mypage/symptom', 로그인했니, function (req, res) {
+    console.log(req.user);
+    res.render('mypage/symptom.ejs', {user_id : req.user.user_id});
+});
+app.get('/mypage/mail', 로그인했니, function (req, res) {
+    console.log(req.user)
+    res.render('mypage/mail.ejs', {user_id : req.user.user_id});
+});
+
+
+//쪽지 보내기
+app.post('/addmail', function(req, res){
+    db.collection('CounterForMail').findOne({ name:'메일갯수'}, function (err, result) {
+        var totalMail = result.totalMail;   
+        var dataMail = { 
+            sender: req.user.user_id,
+            mail_id: totalMail + 1,
+            reciever: req.body.reciever, 
+            send_time: new Date()+(3600000*9),
+            title: req.body.title,
+            file: req.body.file, 
+            content: req.body.content}
+        
+
+        db.collection('Mail').insertOne(dataMail, function (err, result){
+            db.collection('CounterForMail').updateOne({ name: '메일갯수' }, { $inc: { totalMail: 1 } }, function (err, result) {
+                if (err) {
+                    console.log(err)
+                }     
+                res.redirect("/mypage/mailbox")
+                })
+            });
+        });
+    });
+
+
+
+//쪽지함에 쪽지 불러오기 
+
+app.get('/mypage/mailbox', function (req, res) {
+    console.log(req.user.user_id)
+    db.collection('Mail').find().toArray(function (err, result){
+        
+        res.render('mypage/mailbox.ejs', { mail: result, user_id : req.user.user_id})
+    })
+    
+});
+
+
+
+//쪽지 (디테일) 불러오기 
+
+app.get('/mypage/checkmail/:id', function (req, res) {
+    db.collection('Mail').findOne({mail_id : parseInt(req.params.id) }, function (err, result) {
+        if (err) {
+            console.log(err)
+        }
+        console.log(result);
+        res.render('mypage/checkmail.ejs', { mail: result })
     })
 });
 
