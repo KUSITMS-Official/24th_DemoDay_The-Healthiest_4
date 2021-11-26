@@ -7,6 +7,6 @@
 2. cd 24th_DemoDay_The-Healthiest_4/
 3. npm install
 4. npm install mongodb
-5. nodemon start
+5. nodemon server.js
 
 ![4당에서 만나고 싶조_아이템포스터](https://user-images.githubusercontent.com/54874529/141942072-c9503068-71fe-4f10-9f09-c7775c74483c.png)
