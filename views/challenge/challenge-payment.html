@@ -16,7 +16,12 @@
       integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
       crossorigin="anonymous"
     />
-    <script type="text/javascript" src="/script/challenge_script.js"></script>
+    <script>
+      function printResult() {
+        const input = document.getElementById("input").value;
+        document.getElementById("result").innerText = input;
+      }
+    </script>
   </head>
 
   <body>
