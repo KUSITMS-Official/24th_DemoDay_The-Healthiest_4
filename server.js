@@ -62,11 +62,10 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
         if (err) return done(err);
     });
 
-
-
     app.listen(8080, function () {
         console.log('listening on 8080');
     });
+
     //글쓰기(add)
     app.post('/addPost', function (req, res) {
         db.collection('Counter').findOne({ name: '게시물개수' }, function (err, result) {
@@ -83,18 +82,19 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
                     if (err) {
                         console.log(err)
                     }
-                    res.redirect("community/" + req.body.category)
+                    res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
                 })
             });
         });;
     });
 
+    //댓글쓰기
     app.post('/addComment', function (req, res) {
         db.collection('Counter').findOne({ name: '댓글수' }, function (err, result) {
             var totalComment = result.totalComment;
             var dataPost = {
                 content: req.body.content, comment_id: totalComment + 1,
-                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id
+                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id, user_id: req.user.user_id
             }
             db.collection('Comment').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
                 //counter collection의 totalPost도 1 증가시키기
@@ -114,12 +114,12 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
     });
 
     app.delete('/deleteComment', function (req, res) {
-        db.collection('Comment').deleteOne(req.body, function (err, result) {
-            console.log('삭제완료')
+        req.body.comment_id = parseInt(req.body.comment_id)
+        db.collection('Comment').deleteOne(req.body, function (err, result) { //Comment collection에 있는 것을 delete. req.body에는 ajax요청으로 data: {comment_id : ~} 정보가 담겨옴 
+            console.log(err)
         })
-        res.redirect("community/detail/" + parseInt(req.body.post_id))
+        res.send('삭제 완료')
     });
-
 });
 
 app.get('/image/:imageName', function (req, res) {
@@ -255,8 +255,6 @@ app.get('/community/detail/:id', function (req, res) {
     db.collection('Post').findOne({ post_id: parseInt(req.params.id) }, function (err, result) {
         db.collection('Comment').find().toArray(function (err, result2) {
             res.render('community/comm_detail.ejs', { data: result, data2: result2 });
-            console.log(result);
-            console.log(result2);
         })
         if (err) {
             console.log(err)

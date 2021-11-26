@@ -69,7 +69,6 @@
     <!-- post 읽어오기 -->
     <% for (var i = 0; i < posts.length; i++){ %>
       <% if(posts[i].category =='bodytype'){ %>
-      <% if(posts[i].subcategory =='영양부족형'){ %>
       <a href="/community/detail/<%= posts[i].post_id %>">
         <table class="selected">
           <tr>
@@ -81,11 +80,10 @@
             </td>
           </tr>
           <tr>
-            <td class="summary"> <%= posts[i].content %><span class="extra">...더 보기</span></td>
+            <td class="summary"> <%= posts[i].content.substring(0,100) %><span class="extra">...더 보기</span></td>
           </tr>
         </table>
       </a>  
-      <%} %>
       <%} %>
       <%} %>
 
