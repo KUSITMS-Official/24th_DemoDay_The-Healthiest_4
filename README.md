@@ -2,7 +2,7 @@
 
 - 실행환경: vscode
 - 필수 설치 요소: Node.js, Git
-- 설치 방법 (이하 vscode에서 실행)
+-  방법 (이하 vscode에서 실행)
 1. git clone https://github.com/KUSITMS-Official/24th_DemoDay_The-Healthiest_4/
 2. cd 24th_DemoDay_The-Healthiest_4/
 3. npm install
