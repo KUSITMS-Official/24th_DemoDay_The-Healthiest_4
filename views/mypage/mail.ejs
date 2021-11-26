@@ -41,55 +41,59 @@
 
         <div class = "outter">
            
-            <div class="my">
-                <div><button class="writingmail">쪽지 쓰기</button></div>
-               <table class="sboxtable">
-                   <tbody>
-                       <tr>
-                            <td class="icontd"><i class="far fa-envelope fa-lg"></i></td>
-                           <td class="sboxtd">전체 쪽지</td>
-                           <td class="sboxtd snumber">0</td>
-                       </tr>
-                       <tr>
-                            <td class="icontd"><i class="fas fa-inbox fa-lg"></i></td>
-                            <td class="sboxtd">받은 쪽지</td>
-                            <td class="sboxtd snumber">0</td>
-                        </tr>
-                        <tr>
-                            <td class="icontd"><i class="far fa-paper-plane fa-lg"></i></td>
-                            <td class="sboxtd">보낸 쪽지</td>
-                            <td class="sboxtd snumber">0</td>
-                        </tr>
-                   </tbody>
-               </table>
-            </div>   
+            <%- include('mymail.ejs') %>  
             
             <div class="settingspace">
               
-                <div class="boxoutter">
-                    <div class="title">받는 사람</div>
-                    <input type="email" class="receiverinput" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
+                <form action="/addmail" method="POST">
+                    <fieldset> 
+                        <div class="boxoutter">
+                            <p name="sender" style="display:none;"><%= user_id%></p>
+                            <div class="title" >받는 사람</div>
+                            <input type="text" name="reciever" class="receiverinput" id="exampleFormControlInput1" placeholder="User ID를 입력하세요.">
+                        </div>
 
-                <div class="boxoutter">
-                    <div class="title">제목 입력란</div>
-                    <input type="text" class="titleinput">
-                </div>
+                        <div class="boxoutter">
+                            <div class="title">제목 입력란</div>
+                            <input type="text" name="title" class="titleinput">
+                        </div>
                 
-                <div class="contentsoutter">
-                    <div class="contentstitle">내용을 입력하세요
-                        <div class="filebox">
-                            <label for="ex_file">파일 선택</label>
-                            <input type="file" id="ex_file">
+                        <div class="contentsoutter">
+                            <div class="contentstitle">내용을 입력하세요
+                                <div class="filebox">
+                                <label for="ex_file">파일 선택</label>
+                                <input type="file" id="ex_file" name="file">
                           </div>
-                    </div>
-                    <textarea  class="contnetsinput"></textarea>
+                        </div>
+                        <textarea  class="contnetsinput" name="content"></textarea>
                     
-                </div>
-                <button class="submitbttn">보내기</button>
-
-               
+                        </div>
+                        <button class="submitbttn" data-toggle="modal" data-target="#exampleModal10" >보내기</button>
+                        
+                    <fieldset> 
+                </form>
             
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <br />
+                                <br />
+                                    <div class="modal-h">쪽지가 발송되었습니다.</div>
+                                <br />
+                                <br />
+                                <button onclick="location.href='/mypage/mailbox'" class="modal-b" type="button" data-dismiss="modal"  aria-label="Close" >확인</button>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>    
+
                 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                 <script script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>   
                 <script src="https://kit.fontawesome.com/cdb883afa9.js" crossorigin="anonymous"></script>
