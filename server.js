@@ -50,27 +50,27 @@ MongoClient.connect(
     db.collection("User")
       .find({}, { projection: { user_id: 1, _id: 0 } })
       .toArray(function (err, user_id) {
-        console.log(user_id);
+        //console.log(user_id);
         id_list = user_id;
         if (err) return done(err);
       });
     db.collection("User")
       .find({}, { projection: { nickname: 1, _id: 0 } })
       .toArray(function (err, nickname) {
-        console.log(nickname);
+        // console.log(nickname);
         nick_list = nickname;
         if (err) return done(err);
       });
     db.collection("User")
       .find({}, { projection: { email: 1, _id: 0 } })
       .toArray(function (err, email) {
-        console.log(email);
+        //console.log(email);
         mail_list = email;
         if (err) return done(err);
       });
 
     app.listen(8080, function () {
-      console.log("listening on 8080");
+      // console.log("listening on 8080");
     });
 
     const mongoose = require("mongoose");
@@ -158,7 +158,7 @@ app.get("/community/free", function (req, res) {
   db.collection("Post")
     .find()
     .toArray(function (error, result) {
-      console.log(result);
+      // console.log(result);
       res.render("community/comm_free.ejs", { posts: result });
     });
 });
@@ -239,8 +239,8 @@ app.get("/mypage/ask", function (req, res) {
 });
 
 app.post("/add", function (req, res) {
-  console.log("전송완료");
-  console.log(res.body);
+  // console.log("전송완료");
+  // console.log(res.body);
   db.collection("User").insertOne({
     user_id: req.body.id,
     pwd: req.body.pwd,
@@ -282,7 +282,7 @@ passport.use(
       passReqToCallback: false,
     },
     function (input_id, input_pwd, done) {
-      console.log(input_id, input_pwd);
+      // console.log(input_id, input_pwd);
       db.collection("User").findOne(
         { user_id: input_id },
         function (err, result) {
@@ -330,48 +330,48 @@ function 로그인했니(req, res, next) {
 }
 
 app.get("/mypage", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/mypage.ejs", { user_id: req.user.user_id });
 });
 
 app.get("/mypage/bodytype", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/bodytype.ejs", { user_id: req.user.user_id });
 });
 
 app.get("/mypage/challengeExsisted", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/challengeExsisted.ejs", { user_id: req.user.user_id });
 });
 
 app.get("/mypage/challengeNone", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/challengeNone.ejs", { user_id: req.user.user_id });
 });
 
 app.get("/mypage/mywriting", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/mywriting.ejs", { user_id: req.user.user_id });
 });
 
 app.get("/mypage/revisingwriting", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/revisingwriting.ejs", { user_id: req.user.user_id });
 });
 app.get("/mypage/settingAccount", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/setting.ejs", { user_id: req.user.user_id });
 });
 app.get("/mypage/settingCommunity", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/setting2.ejs", { user_id: req.user.user_id });
 });
 app.get("/mypage/symptom", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/symptom.ejs", { user_id: req.user.user_id });
 });
 app.get("/mypage/mail", 로그인했니, function (req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.render("mypage/mail.ejs", { user_id: req.user.user_id });
 });
 
@@ -397,7 +397,7 @@ app.post("/addmail", function (req, res) {
           { $inc: { totalMail: 1 } },
           function (err, result) {
             if (err) {
-              console.log(err);
+              // console.log(err);
             }
             res.redirect("/mypage/mailbox");
           }
@@ -410,7 +410,7 @@ app.post("/addmail", function (req, res) {
 //쪽지함에 쪽지 불러오기
 
 app.get("/mypage/mailbox", function (req, res) {
-  console.log(req.user.user_id);
+  // console.log(req.user.user_id);
   db.collection("Mail")
     .find()
     .toArray(function (err, result) {
@@ -430,7 +430,7 @@ app.get("/mypage/checkmail/:id", function (req, res) {
       if (err) {
         console.log(err);
       }
-      console.log(result);
+      // console.log(result);
       res.render("mypage/checkmail.ejs", { mail: result });
     }
   );
@@ -476,7 +476,7 @@ app.post("/addPost", function (req, res) {
             if (err) {
               console.log(err);
             }
-            console.log(req.user);
+            // console.log(req.user);
             res.redirect("community/" + req.body.category);
           }
         );
@@ -523,7 +523,7 @@ app.post("/upload", upload.single("이미지"), function (req, res) {
 //댓글 지우기
 app.delete("/deleteComment", function (req, res) {
   req.body.comment_id = parseInt(req.body.comment_id);
-  console.log(req.body);
+  // console.log(req.body);
 
   var 삭제할데이터 = {
     comment_id: req.body.comment_id,
@@ -584,12 +584,14 @@ app.get("/challenge/certification", function (req, res) {
 });
 
 app.get("/challenge/payment", function (req, res) {
+  //console.log(req.user.user_id);
   res.sendFile(__dirname + "/views/challenge/challenge-payment.html");
 });
 
 app.post("/pay", function (req, res) {
+  console.log("집어넣기 도전");
   db.collection("Challenge").insertOne({
-    nickname: req.user.nickname,
+    user_id: req.user.user_id,
     stamp_count: 0,
     image_upload: false,
     certification: "yet",
@@ -598,20 +600,19 @@ app.post("/pay", function (req, res) {
 });
 
 app.get("/challenge/stamp", function (req, res) {
+  console.log(req.user.user_id);
   db.collection("Challenge").findOne(
-    { nickname: req.user.nickname },
+    { user_id: req.user.user_id },
     function (err, result) {
       res.render("challenge/challenge_stamp.ejs", {
         count: result.stamp_count,
         certification: result.certification,
         img_upload: result.image_upload,
       });
-      console.log(count);
     }
   );
 });
 
-let multer = require("multer");
 const { Db } = require("mongodb");
 var date;
 var storage = multer.diskStorage({
