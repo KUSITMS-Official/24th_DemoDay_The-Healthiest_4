@@ -35,24 +35,18 @@
       <td style="width:20px;"></td>
       <td><a href="/community/<%= data.category %>"><img src="/img/backspace.png"></a></td>
       <td>
-        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;">자유게시판</div>
+        <div class="col" style="font-size: 34px; font-weight: bold; z-index: -1;"> <%= data.categoryname %> </div>
       </td>
     </table>
 
   </div>
-
-
-  <script>
-    var fulldate = data.created_at;
-    var dateTime = fulldate.slice()
-  </script>
 
 <div class="container mt-5" style="font-size:20px;">
     <table style="width:100%; border: 1px #898989 solid; border-collapse: collapse; text-align:left; border-radius: 0.5em; overflow: hidden; width:100%; box-shadow: 1px 1px 4px #959595; background-color: white;">
       <tr>
         <td style="padding-top:0.5em"> <span style="width:72.5%; font-weight: bold; font-size:32px; padding-left: 0.7em; padding-top: 3.5em"><%= data.title %> </span>
           <div style="width:22%; height:60px; float:right; padding:3px; margin-right:1em; padding-top:-16px; border-collapse: collapse; text-align:center; border-radius: 0.5em; overflow: hidden; background-color: #F6F6F6; font-size:20px">
-            <%= data.user_id %> <br> <span style="color:#898989"> <%= data.created_at %> </span>
+            <%= data.nickname %> <br> <span style="color:#898989"> <%= data.created_at.substring(11,15) %>/<%= data.created_at.substring(4,7) %>/<%= data.created_at.substring(8,11) %> <%= data.created_at.substring(15,21) %> </span>
           </div>
         </td>
 
@@ -70,72 +64,64 @@
           <td style="padding-left:1em; padding-top:0.5em;"> <img src="../../img/thumb_before.png"></td>
         </tr>
 
-    <tr>
-      <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;">닉네임 <img src="../../img/icon_best.png">  </span> <span style="color: #898989; float: right; padding-right: 1em;">공감</span></td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;"> 댓글입니다. </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;color:#898989"> 10/24 16:49 <span style="color:#0E52A0; padding-left: 0.5em;"><img src="../../img/icon-thumb-blue.png"> 15 </span></td>
-    </tr>
+<!-- 댓글 불러오기 -->
+<% for (var i = 0; i < data2.length; i++){ %>
+  <% if(data2[i].post_id == data.post_id ){ %>
 
+  <tr>
+    <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;"> <%= data2[i].nickname %> </span> <span style="color: #898989; float: right; padding-right: 1em;">공감 &#124; <a class="deleteComment" style="color: #898989;" data-id="<%= data2[i].comment_id %>" > 삭제 </a> </span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left:1em;"> <%= data2[i].content %> </td>
+  </tr>
+  <tr>
+    <td style="padding-left:1em;color:#898989"> <%= data2[i].created_at.substring(11,15) %>/<%= data2[i].created_at.substring(4,7) %>/<%= data2[i].created_at.substring(8,11) %> <%= data2[i].created_at.substring(15,21) %> <span style="color:#0E52A0; padding-left: 0.5em;"><img src="../../img/icon-thumb-blue.png"> 7 </span></td>
+  </tr>
 
-    <tr>
-      <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;">닉네임  </span><span style="color: #898989; float: right; padding-right: 1em;">공감</span> </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;"> 댓글입니다. </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;color:#898989"> 10/24 16:49 <span style="color:#0E52A0; padding-left: 0.5em;"><img src="../../img/icon-thumb-blue.png"> 10 </span></td>
-    </tr>
-
-
-    <tr>
-      <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;">닉네임 </span> <span style="color: #898989; float: right; padding-right: 1em;">공감</span> </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;"> 댓글입니다. </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;color:#898989"> 10/24 16:49 <span style="color:#0E52A0; padding-left: 0.5em;"><img src="../../img/icon-thumb-blue.png"> 11 </span></td>
-    </tr>
-
-
-    <tr>
-      <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;">닉네임 </span> <span style="color: #898989; float: right; padding-right: 1em;">공감</span> </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;"> 댓글입니다. </td>
-    </tr>
-    <tr>
-      <td style="padding-left:1em;color:#898989"> 10/24 16:49 <span style="color:#0E52A0; padding-left: 0.5em;"><img src="../../img/icon-thumb-blue.png"> 7 </span></td>
-    </tr>
+  <%} %>
+  <%} %>
 
   </table>
+
+
+
 </div>
 <br>
-
 
 <div style="height: 30px;">
 
 </div>
 
+<form action="/addComment" method="POST">
 <div>
   <table style="width:100%; bottom:0px; position: fixed">
-    <td style="font-size: 20px; background-color: #F6F6F6; text-align: left; padding-left: 1em; color:#898989">댓글을 입력하세요</td>
-    <td style="font-size: 30px; background-color: #61A0E8; color:white; font-weight: bold; width: 10.5%;">완료</td>
+    <td style="font-size: 20px; background-color: #F6F6F6; text-align: left; padding-left: 1em; color:#898989"><input name="content" style="background-color: transparent; border:none; width:95%" type="text" placeholder="댓글을 입력하세요"></td>
+    <td style="font-size: 30px; background-color: #61A0E8; color:white; font-weight: bold; width: 10.5%;"><button type="submit" style="font-size: 30px; background-color: #61A0E8; color:white; font-weight: bold;">완료</td>
   </table>
 </div>
+<input type="hidden" name="post_id" value= <%= data.post_id %>>
+<!--<input type="hidden" name="user_id" value= <%= data.user_id %>>-->
+</form>
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
+
+    <script>
+      $('.deleteComment').click(function(e){
+        $.ajax({
+          method : 'DELETE',
+          url : '/deleteComment',
+          data : { comment_id : e.target.dataset.id }
+        }).done(function(결과){
+          window.location.reload()
+          //AJAX 성공시 실행할 코드는 여기
+        })
+      });
+    </script>
 
 
 </body>
