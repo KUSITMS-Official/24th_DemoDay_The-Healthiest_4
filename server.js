@@ -82,30 +82,6 @@ module.exports = () => {
   require('mypage/mailbox'); 
 };
     
-    //글쓰기(add)
-    app.post('/addPost', function (req, res) {
-        db.collection('Counter').findOne({ name:'게시물개수'}, function (err, result) {
-            var totalPost = result.totalPost;   
-            var dataPost = { title: req.body.title, content: req.body.content, post_id: totalPost + 1,
-                created_at: new Date()+(3600000*9), updated_at: new Date()+(3600000*9), category: req.body.category, subcategory: req.body.subcategory,
-                user_id: req.user.user_id
-            }
-            db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
-                //counter collection의 totalPost도 1 증가시키기
-                //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
-                db.collection('Counter').updateOne({ name: '게시물개수' }, { $inc: { totalPost: 1 } }, function (err, result) {
-                    if (err) {
-                        console.log(err)
-                    }
-                    res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
-                })
-            });
-        });;
-    });
-});
-
-app.get('/image/:imageName', function (req, res) {
-    res.sendFile(__dirname + '/public/image/' + res.params.imageName)
 })
 
 
@@ -462,13 +438,10 @@ passport.deserializeUser(function (nickname, done) {
 app.post('/addPost', function (req, res) {
     db.collection('Counter').findOne({ name: '게시물개수' }, function (err, result) {
         var totalPost = result.totalPost;
-        var postLiked = result.liked;
-        var commentLiked = result.totalPost;
-
         var dataPost = {
             title: req.body.title, content: req.body.content, post_id: totalPost + 1,
             created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), category: req.body.category, subcategory: req.body.subcategory,
-            categoryname: req.body.categoryname, file: req.body.이미지, nickname: req.user.nickname
+            categoryname: req.body.categoryname, file: req.body.이미지, nickname: req.user.nickname, likeCount: 0
         }
         db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
             //counter collection의 totalPost도 1 증가시키기
@@ -478,7 +451,7 @@ app.post('/addPost', function (req, res) {
                     console.log(err)
                 }
                 console.log(req.user)
-                res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
+                res.redirect("community/" + req.body.category)
             })
         });
     });;
@@ -505,11 +478,12 @@ app.post('/addComment', function (req, res) {
     });;
 });
 
+//이미지 업로드
 app.post('/upload', upload.single('이미지'), function (req, res) {
     res.send('업로드완료')
 })
 
-
+//댓글 지우기
 app.delete('/deleteComment', function (req, res) {
     req.body.comment_id = parseInt(req.body.comment_id)
     console.log(req.body)
@@ -523,3 +497,35 @@ app.delete('/deleteComment', function (req, res) {
     })
     res.send('삭제 완료')
 });
+
+app.post("/index/:id", function (req, res) {
+    TestData.findById(req.params.id, function (err, theUser) {
+        if (err) {
+            console.log(err);
+        } else {
+            theUser.likes += 1;
+            theUser.save();
+            console.log(theUser.likes);
+            res.send({likeCount: theUser.likes}); //something like this...
+        }
+    });
+});
+
+//like
+
+//post, user, liked(?)를 불러온다
+//if not liked
+//Liked.objects.create(user=request.user, post = post)  //liked가 없으면 Liked(model)에 user와 post 정보를 담은 object 생성
+//post.likeCount += 1
+//save
+
+//else
+//liked = Liked.objects.get(user=req.user, post=post)  //post와 user에 대한 정보를 담은 정보를 get으로 받아옴
+//post.likeCount -= 1
+//save
+//liked delete(지워야 다시 create 가능하니까)
+
+app.delete('/:id/likePost', async(req, res, next) => {
+    db.collection('Counter').findOne({ name: '글공감수' }, function (err, result) {
+    })
+})

@@ -61,13 +61,13 @@
           <img src="../../img/icon-comment-blue.png"> 25 </td>
         </tr>
         <tr>
-          <td style="padding-left:1em; padding-top:0.5em;"> <img src="../../img/thumb_before.png"></td>
-        </tr>
+          <td style="padding-left:1em; padding-top:0.5em;">
+            <img onclick="toggleBtnClick()" id="baseImg" src="/img/thumb_before.png">
+          </tr>
 
 <!-- 댓글 불러오기 -->
 <% for (var i = 0; i < data2.length; i++){ %>
   <% if(data2[i].post_id == data.post_id ){ %>
-
   <tr>
     <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;"> <%= data2[i].nickname %> </span> <span style="color: #898989; float: right; padding-right: 1em;">공감 &#124; <a class="deleteComment" style="color: #898989;" data-id="<%= data2[i].comment_id %>" > 삭제 </a> </span>
     </td>
@@ -121,8 +121,28 @@
           //AJAX 성공시 실행할 코드는 여기
         })
       });
-    </script>
+      function updateLikes() {
+    id = $('.likeicon').attr('nickname');
+    $.post('/index/' + id, function (response) {
+        $('fa-thumbs-o-up').text(response.likeCount); //your counter on a page
+        //and update likes counter with response
+    })
+  }
 
+  var clicked = false;
+  
+  function toggleBtnClick() {
+    var img = document.getElementById('baseImg');
+    if (clicked) {
+      img.src = '/img/thumb_after_blue.png';
+      clicked = false;
+      
+    } else {
+      img.src = '/img/thumb_before.png';
+      clicked = true;
+    }
+  }
+    </script>
 
 </body>
 
