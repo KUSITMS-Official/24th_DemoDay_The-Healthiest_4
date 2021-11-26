@@ -46,7 +46,7 @@
       <tr>
         <td style="padding-top:0.5em"> <span style="width:72.5%; font-weight: bold; font-size:32px; padding-left: 0.7em; padding-top: 3.5em"><%= data.title %> </span>
           <div style="width:22%; height:60px; float:right; padding:3px; margin-right:1em; padding-top:-16px; border-collapse: collapse; text-align:center; border-radius: 0.5em; overflow: hidden; background-color: #F6F6F6; font-size:20px">
-            <%= data.user_id %> <br> <span style="color:#898989"> <%= data.created_at.substring(11,15) %>/<%= data.created_at.substring(4,7) %>/<%= data.created_at.substring(8,11) %> <%= data.created_at.substring(15,21) %> </span>
+            <%= data.nickname %> <br> <span style="color:#898989"> <%= data.created_at.substring(11,15) %>/<%= data.created_at.substring(4,7) %>/<%= data.created_at.substring(8,11) %> <%= data.created_at.substring(15,21) %> </span>
           </div>
         </td>
 
@@ -69,7 +69,7 @@
   <% if(data2[i].post_id == data.post_id ){ %>
 
   <tr>
-    <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;"> <%= data2[i].user_id %> </span> <span style="color: #898989; float: right; padding-right: 1em;">공감 &#124; <a class="deleteComment" style="color: #898989;" data-id="<%= data2[i].comment_id %>" > 삭제 </a> </span>
+    <td> <hr> <span style="padding-left:1em; padding-top:1em; font-weight: bold;"> <%= data2[i].nickname %> </span> <span style="color: #898989; float: right; padding-right: 1em;">공감 &#124; <a class="deleteComment" style="color: #898989;" data-id="<%= data2[i].comment_id %>" > 삭제 </a> </span>
     </td>
   </tr>
   <tr>

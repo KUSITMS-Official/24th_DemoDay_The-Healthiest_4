@@ -87,11 +87,12 @@ header {
   /* 버튼 */
   .write_btn {
     margin-right:3%; 
-    margin-top: -3%;
+    margin-top: -3.5%;
+    padding-top: 4px;
     border-radius: 1.875em;
-    width: 151px;
-    height: 57px;
-    font-size: 24px;
+    width: 131px;
+    height: 45px;
+    font-size: 20px;
     background-color: #0E53A0;
     color: white;
     font-weight: bold;
@@ -135,6 +136,7 @@ header {
     height:84px;
     border-bottom:solid #C4C4C4 1px;
     font-size:18px;
+    text-align: left;
   }
   
   .selected .title{

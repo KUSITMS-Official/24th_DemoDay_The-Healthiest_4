@@ -70,10 +70,13 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
     app.post('/addPost', function (req, res) {
         db.collection('Counter').findOne({ name: '게시물개수' }, function (err, result) {
             var totalPost = result.totalPost;
+            var postLiked = result.liked;
+            var commentLiked = result.totalPost;
+
             var dataPost = {
                 title: req.body.title, content: req.body.content, post_id: totalPost + 1,
                 created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), category: req.body.category, subcategory: req.body.subcategory,
-                user_id: req.user.user_id, categoryname: req.body.categoryname, file: req.body.이미지
+                categoryname: req.body.categoryname, file: req.body.이미지, nickname: req.user.nickname
             }
             db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
                 //counter collection의 totalPost도 1 증가시키기
@@ -82,6 +85,7 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
                     if (err) {
                         console.log(err)
                     }
+                    console.log(req.user)
                     res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
                 })
             });
@@ -94,7 +98,7 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
             var totalComment = result.totalComment;
             var dataPost = {
                 content: req.body.content, comment_id: totalComment + 1,
-                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id, user_id: req.user.user_id
+                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id, nickname: req.user.nickname
             }
             db.collection('Comment').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
                 //counter collection의 totalPost도 1 증가시키기
@@ -201,7 +205,6 @@ app.get('/community/free', function (req, res) {
 app.get('/community/bodytype', function (req, res) {
 
     db.collection('Post').find().toArray(function (error, result) {
-        console.log(result)
         res.render('community/comm_body.ejs', { posts: result })
     });
 });
@@ -377,8 +380,8 @@ passport.serializeUser(function (user, done) {
     done(null, user.user_id)
 });
 
-passport.deserializeUser(function (id, done) {
-    db.collection('User').findOne({ user_id: id }, function (err, result) {
-        done(null, result)
+passport.deserializeUser(function (nickname, done) {
+    db.collection('User').findOne({ nickname : nickname }, function (err, result) {
+    done(null, result)
     })
-});
+}); 
