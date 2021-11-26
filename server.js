@@ -66,64 +66,6 @@ MongoClient.connect('mongodb+srv://admin:health1234@cluster0.g6wfe.mongodb.net/m
         console.log('listening on 8080');
     });
 
-    //글쓰기(add)
-    app.post('/addPost', function (req, res) {
-        db.collection('Counter').findOne({ name: '게시물개수' }, function (err, result) {
-            var totalPost = result.totalPost;
-            var postLiked = result.liked;
-            var commentLiked = result.totalPost;
-
-            var dataPost = {
-                title: req.body.title, content: req.body.content, post_id: totalPost + 1,
-                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), category: req.body.category, subcategory: req.body.subcategory,
-                categoryname: req.body.categoryname, file: req.body.이미지, nickname: req.user.nickname
-            }
-            db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
-                //counter collection의 totalPost도 1 증가시키기
-                //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
-                db.collection('Counter').updateOne({ name: '게시물개수' }, { $inc: { totalPost: 1 } }, function (err, result) {
-                    if (err) {
-                        console.log(err)
-                    }
-                    console.log(req.user)
-                    res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
-                })
-            });
-        });;
-    });
-
-    //댓글쓰기
-    app.post('/addComment', function (req, res) {
-        db.collection('Counter').findOne({ name: '댓글수' }, function (err, result) {
-            var totalComment = result.totalComment;
-            var dataPost = {
-                content: req.body.content, comment_id: totalComment + 1,
-                created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id, nickname: req.user.nickname
-            }
-            db.collection('Comment').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
-                //counter collection의 totalPost도 1 증가시키기
-                //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
-                db.collection('Counter').updateOne({ name: '댓글수' }, { $inc: { totalComment: 1 } }, function (err, result) {
-                    if (err) {
-                        console.log(err)
-                    }
-                    res.redirect("community/detail/" + parseInt(req.body.post_id))
-                })
-            });
-        });;
-    });
-
-    app.post('/upload', upload.single('이미지'), function (req, res) {
-        res.send('업로드완료')
-    });
-
-    app.delete('/deleteComment', function (req, res) {
-        req.body.comment_id = parseInt(req.body.comment_id)
-        db.collection('Comment').deleteOne(req.body, function (err, result) { //Comment collection에 있는 것을 delete. req.body에는 ajax요청으로 data: {comment_id : ~} 정보가 담겨옴 
-            console.log(err)
-        })
-        res.send('삭제 완료')
-    });
 });
 
 app.get('/image/:imageName', function (req, res) {
@@ -262,9 +204,7 @@ app.get('/community/detail/:id', function (req, res) {
         if (err) {
             console.log(err)
         }
-
     });
-
 })
 
 /* challenge */
@@ -381,7 +321,74 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (nickname, done) {
-    db.collection('User').findOne({ nickname : nickname }, function (err, result) {
-    done(null, result)
+    db.collection('User').findOne({ nickname: nickname }, function (err, result) {
+        done(null, result)
     })
-}); 
+});
+
+/* Post & Comment */
+
+//글쓰기(add)
+app.post('/addPost', function (req, res) {
+    db.collection('Counter').findOne({ name: '게시물개수' }, function (err, result) {
+        var totalPost = result.totalPost;
+        var postLiked = result.liked;
+        var commentLiked = result.totalPost;
+
+        var dataPost = {
+            title: req.body.title, content: req.body.content, post_id: totalPost + 1,
+            created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), category: req.body.category, subcategory: req.body.subcategory,
+            categoryname: req.body.categoryname, file: req.body.이미지, nickname: req.user.nickname
+        }
+        db.collection('Post').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
+            //counter collection의 totalPost도 1 증가시키기
+            //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
+            db.collection('Counter').updateOne({ name: '게시물개수' }, { $inc: { totalPost: 1 } }, function (err, result) {
+                if (err) {
+                    console.log(err)
+                }
+                console.log(req.user)
+                res.redirect("community/" + req.body.category) //render든 redirect든 바꾸어야 함
+            })
+        });
+    });;
+});
+
+//댓글쓰기
+app.post('/addComment', function (req, res) {
+    db.collection('Counter').findOne({ name: '댓글수' }, function (err, result) {
+        var totalComment = result.totalComment;
+        var dataPost = {
+            content: req.body.content, comment_id: totalComment + 1,
+            created_at: new Date() + (3600000 * 9), updated_at: new Date() + (3600000 * 9), post_id: req.body.post_id, nickname: req.user.nickname
+        }
+        db.collection('Comment').insertOne(dataPost, function (에러, 결과) { //post라는 collection에 insertOne
+            //counter collection의 totalPost도 1 증가시키기
+            //updateOne(어떤 데이터를 수정할지, 수정값(operator: ~), function())
+            db.collection('Counter').updateOne({ name: '댓글수' }, { $inc: { totalComment: 1 } }, function (err, result) {
+                if (err) {
+                    console.log(err)
+                }
+                res.redirect("community/detail/" + parseInt(req.body.post_id))
+            })
+        });
+    });;
+});
+
+app.post('/upload', upload.single('이미지'), function (req, res) {
+    res.send('업로드완료')
+});
+
+app.delete('/deleteComment', function (req, res) {
+    req.body.comment_id = parseInt(req.body.comment_id)
+    console.log(req.body)
+
+    var 삭제할데이터 = { comment_id: req.body.comment_id, nickname: req.user.nickname }
+
+    db.collection('Comment').deleteOne(삭제할데이터, function (err, result) { //Comment collection에 있는 것을 delete. req.body에는 ajax요청으로 data: {comment_id : ~} 정보가 담겨옴 
+        if(err){
+            console.log(err)
+        }
+    })
+    res.send('삭제 완료')
+});
